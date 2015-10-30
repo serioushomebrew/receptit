@@ -13,16 +13,21 @@ class SearchController extends Controller
 {
     public function postSearch(Request $request)
     {
+        
+
         // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
         // $products = $albertHeijn->searchProducts('banaan');
 
-        AlbertHeijn::apiKey(env('API_KEY_ALBERTHEIJN'));
-        AlbertHeijn::searchProducts('banaan');
+        //AlbertHeijn::apiKey(env('API_KEY_ALBERTHEIJN'));
+        //AlbertHeijn::searchProducts('banaan');
 
         // dd($products);
 
         // return response()->json([
         //
         // ]);
+
+
+
     }
 }
