@@ -1,3 +1,6 @@
+# Recept.it
+Dutch Open Hackathon 2015
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
