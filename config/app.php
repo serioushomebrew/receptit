@@ -145,7 +145,24 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        Ixudra\Curl\CurlServiceProvider::class,
+
     ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Facades
+    |--------------------------------------------------------------------------
+    |
+    */
+    'facades'       => array(
+
+        'Curl'          => Ixudra\Curl\Facades\Curl::class,
+
+    ),
+
 
     /*
     |--------------------------------------------------------------------------
