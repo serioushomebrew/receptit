@@ -4,7 +4,7 @@ Dutch Open Hackathon 2015
 ## Vagrant setup
 1. Run `php vendor/bin/homestead make` in the project root
 2. Run `vagrant up` to bootup the virtual machine
-3. Go to [![http://recept.it:8000](http://recept.it:8000)
+3. Go to [http://recept.it:8000](http://recept.it:8000)
 
 ## Laravel PHP Framework
 
