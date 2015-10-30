@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Library\AlbertHeijn;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,8 +13,16 @@ class SearchController extends Controller
 {
     public function postSearch(Request $request)
     {
-        return response()->json([
-            
-        ]);
+        // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
+        // $products = $albertHeijn->searchProducts('banaan');
+
+        AlbertHeijn::apiKey(env('API_KEY_ALBERTHEIJN'));
+        AlbertHeijn::searchProducts('banaan');
+
+        // dd($products);
+
+        // return response()->json([
+        //
+        // ]);
     }
 }
