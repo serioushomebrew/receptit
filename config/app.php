@@ -145,24 +145,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
         Ixudra\Curl\CurlServiceProvider::class,
-
     ],
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Facades
-    |--------------------------------------------------------------------------
-    |
-    */
-    'facades'       => array(
-
-        'Curl'          => Ixudra\Curl\Facades\Curl::class,
-
-    ),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -211,6 +195,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        'Curl'          => Ixudra\Curl\Facades\Curl::class,
     ],
 
 ];
