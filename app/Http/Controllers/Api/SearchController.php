@@ -17,7 +17,7 @@ class SearchController extends Controller
         // $products = $albertHeijn->searchProducts('banaan');
 
         AlbertHeijn::apiKey(env('API_KEY_ALBERTHEIJN'));
-        AlbertHeijn::searchProducts('banaan');
+        AlbertHeijn::products('banaan');
 
         // dd($products);
 
