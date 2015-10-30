@@ -2,6 +2,8 @@
 
 namespace App\Library;
 
+use Ixudra\Curl\Facades\Curl;
+
 class AlbertHeijn
 {
     private $_apiKey = '';
@@ -11,8 +13,19 @@ class AlbertHeijn
         self::_apiKey = $apiKey;
     }
 
-    public function products()
+    /**
+     * Searches products that match the term
+     *
+     * @param string $term The search term
+     * @return object JSON object with results
+     */
+    public function products($term)
     {
-
+        return Curl::to('https://frahmework.ah.nl/ah/json/producten')
+            ->withData( array(
+                'productomschrijving'   => $term,
+                'personalkey'           => self::_apiKey
+                ) )
+            ->get();
     }
 }
