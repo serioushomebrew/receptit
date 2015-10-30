@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace' => 'Api', 'as' => 'api::', 'middleware' => []], function () {
+    Route::post('/search', [
+        'uses' => 'SearchController@postSearch',
+        'as' => 'search',
+    ]);
+});
