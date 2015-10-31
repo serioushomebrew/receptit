@@ -16,12 +16,15 @@
 
 <section id="container" class="container">
     <div id="interactive" class="viewport"></div>
-    <div id="shoppingList"></div>
+    <div id="shoppingList">
+        <h2 id="title">Scan uw bonus kaart met uw camera.</h2>
+    </div>
 </section>
 
 <script src="js/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="js/quagga/quagga.js" type="text/javascript"></script>
 <script src="js/scan.js" type="text/javascript"></script>
 <script src="js/receptit/client.js" type="text/javascript"></script>
+<script src="js/receptit/product.js" type="text/javascript"></script>
 </body>
 </html>

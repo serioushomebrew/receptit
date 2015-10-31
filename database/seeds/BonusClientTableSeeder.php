@@ -11,6 +11,6 @@ class BonusClientTableSeeder extends Seeder
      */
     public function run()
     {
-        App\BonusClient::create(['client_id' => '13337', 'card_number' => '2621119110480']);
+        App\BonusClient::create(['client_id' => '13555', 'card_number' => '2621119110480']);
     }
 }
