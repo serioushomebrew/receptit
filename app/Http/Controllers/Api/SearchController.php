@@ -49,7 +49,7 @@ class SearchController extends Controller
                 continue;
             }
 
-            $products[] = $product->productomschrijving . ' - ' . $product->recepttrefwoord;
+            $products[] = $product->productomschrijving;
         }
 
         return response()->json([
