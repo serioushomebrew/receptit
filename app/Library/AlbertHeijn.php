@@ -54,15 +54,16 @@ class AlbertHeijn
      * Returns recipes where the ingredient stands in
      *
      * @param array $products Ingredient which we want to search in recipes
+     * @param array $filters Recipe filters
      * @return object JSON object with results
      */
-    public static function searchRecipes($queryList)
+    public static function searchRecipes($queryList, $filters = array())
     {
         // A list which contains all recipes that matches the product request
         $recipes = [];
 
         // Search a recipe for each product type
-        foreach($queryList as $query) {
+        foreach ($queryList as $query) {
             $recipeList = Curl::to(self::$_requestUrl['recipes'])
                 ->withData([
                     'personalkey' => self::$_apiKey,
@@ -73,15 +74,21 @@ class AlbertHeijn
                 ->get();
 
             // For each recipe we need the product listing
-            foreach($recipeList as $recipe) {
+            foreach ($recipeList as $recipe) {
                 // We need to hack this back appending the api key...
                 /*$productList = Curl::to($recipe->productenurl . '&personalkey=' . self::$_apiKey)
                     ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
                     ->asJson()
                     ->get();*/
 
-                if(!isset($recipe->receptzoektermen))
+                if (!isset($recipe->receptzoektermen)) {
                     continue;
+                }
+
+                // Filters
+                if (isset($filters['receptvleesvisofvega']) && $filters['receptvleesvisofvega'] != $recipe->receptvleesvisofvega) {
+                    continue;
+                }
 
                 $recipeListTags = $recipe->receptzoektermen;
                 $recipeListTags = str_replace(' ', '', $recipeListTags);
@@ -89,8 +96,8 @@ class AlbertHeijn
 
                 $maxScore = count($recipeListTags);
                 $curScore = 0;
-                foreach($recipeListTags as $item) {
-                    if(in_array($item, $queryList)) {
+                foreach ($recipeListTags as $item) {
+                    if (in_array($item, $queryList)) {
                         $curScore++;
                     }
                 }
@@ -122,10 +129,10 @@ class AlbertHeijn
         });
 
         // Sort, based in completed recipe's
-        usort($recipes, function($a, $b) {
-            if($a['product-score'] > $b['product-score']) {
+        usort($recipes, function ($a, $b) {
+            if ($a['product-score'] > $b['product-score']) {
                 return -1;
-            } else if($a['product-score'] < $b['product-score']) {
+            } else if ($a['product-score'] < $b['product-score']) {
                 return 1;
             } else {
                 return 0;
@@ -143,7 +150,7 @@ class AlbertHeijn
      */
     public static function request($url)
     {
-        $response =  Curl::to($url.'&personalkey='.self::$_apiKey)
+        $response = Curl::to($url . '&personalkey=' . self::$_apiKey)
             ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
             ->asJson()
             ->get();
