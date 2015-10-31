@@ -127,6 +127,11 @@ class SearchController extends Controller
 
                 if(!empty($ahRecipes)) {
                     foreach($ahRecipes as $recipe) {
+                        // check if result is valid
+                        if($recipe->querystatus == 0) {
+                            continue;
+                        }
+
                         // add the receptid to the rating
                         array_push($rating, $recipe->receptid);
 
@@ -143,10 +148,12 @@ class SearchController extends Controller
         if (!empty($rating)) {
             $rating = array_count_values($rating);
             arsort($rating);
+            $rating = array_slice($rating, 0, 6, true);
 
             foreach($rating as $recipe_id => $count) {
                 array_push($ordered, $recipes[$recipe_id]);
             }
+            unset($recipes);
         }
 
         return response()->json([
