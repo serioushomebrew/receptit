@@ -94,20 +94,12 @@ class SearchController extends Controller
             $rating = array_count_values($rating);
         }
 
-        print_r($rating);
+        foreach($rating as $recipe_id) {
+            $recipes = $recipes[$recipe_id];
+        }
 
-
-//        // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
-//        // $products = $albertHeijn->searchProducts('banaan');
-//
-//
-//        AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
-//        dd(AlbertHeijn::searchRecipes('banaan'));
-//
-//        // dd($products);
-//
-//        // return response()->json([
-//        //
-//        // ]);
+        return response()->json([
+            'recipes' => $recipes,
+        ]);
     }
 }
