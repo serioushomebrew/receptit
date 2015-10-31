@@ -92,19 +92,25 @@ class SearchController extends Controller
             ]);
         }
 
-        $rating = array();
-        $recipes = array();
-        $ingredients = (array) Input::get('query'); // $request->input('query', ''); $request->has();
+        $rating = [];
+        $recipes = [];
+        $ordered = [];
+
+        // go through each ingredient
+        $ingredients = (array) $request->input('query');
         foreach ($ingredients as $ingredient) {
 
             // Require at least 3 character inputs
             if (strlen($ingredient) >= 3) {
+                // Get recipes with this ingredient
                 $ahRecipes = AlbertHeijn::searchRecipes($ingredient);
 
                 if(!empty($ahRecipes)) {
                     foreach($ahRecipes as $recipe) {
+                        // add the receptid to the rating
                         array_push($rating, $recipe->receptid);
 
+                        // save the recipe to an array
                         if (!isset($recipes[$recipe->receptid])) {
                             $recipes[$recipe->receptid] = $recipe;
                         }
@@ -113,17 +119,18 @@ class SearchController extends Controller
             }
         }
 
+        // if we got any results to rate
         if (!empty($rating)) {
             $rating = array_count_values($rating);
-            asort($rating);
+            arsort($rating);
 
             foreach($rating as $recipe_id => $count) {
-                $recipes = $recipes[$recipe_id];
+                array_push($ordered, $recipes[$recipe_id]);
             }
         }
 
         return response()->json([
-            'recipes' => $recipes,
+            'recipes' => $ordered,
         ]);
     }
 }
