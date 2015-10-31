@@ -128,7 +128,7 @@ class SearchController extends Controller
                 if(!empty($ahRecipes)) {
                     foreach($ahRecipes as $recipe) {
                         // check if result is valid
-                        if($recipe->querystatus != 0) {
+                        if($recipe->querystatus == 0) {
                             continue;
                         }
 
