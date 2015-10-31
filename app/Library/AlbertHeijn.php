@@ -53,24 +53,6 @@ class AlbertHeijn
     /**
      * Returns recipes where the ingredient stands in
      *
-     * @param array $query Ingredient which we want to search in recipes
-     * @return object JSON object with results
-     */
-    public static function searchRecipe($query)
-    {
-        return Curl::to(self::$_requestUrl['recipes'])
-            ->withData([
-                'personalkey' => self::$_apiKey,
-                'receptingredienten' => $query,
-            ])
-            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
-            ->asJson()
-            ->get();
-    }
-
-    /**
-     * Returns recipes where the ingredient stands in
-     *
      * @param array $products Ingredient which we want to search in recipes
      * @return object JSON object with results
      */
