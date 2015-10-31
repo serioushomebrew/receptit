@@ -34,6 +34,13 @@ class SearchController extends Controller
         $ahProducts = AlbertHeijn::searchProducts($request->input('query'));
         $products = [];
 
+        // Dont search if there arent any products available
+        if (count($ahProducts) === 0) {
+            return response()->json([
+                'products' => [],
+            ]);
+        }
+
         foreach ($ahProducts as $product) {
             // Limit to 10 rows
             if (count($products) > 50) {
@@ -87,7 +94,7 @@ class SearchController extends Controller
 
         $rating = array();
         $recipes = array();
-        $ingredients = (array) Input::get('query');
+        $ingredients = (array) Input::get('query'); // $request->input('query', ''); $request->has();
         foreach ($ingredients as $ingredient) {
 
             // Require at least 3 character inputs
@@ -108,10 +115,11 @@ class SearchController extends Controller
 
         if (!empty($rating)) {
             $rating = array_count_values($rating);
-        }
+            asort($rating);
 
-        foreach($rating as $recipe_id => $count) {
-            $recipes = $recipes[$recipe_id];
+            foreach($rating as $recipe_id => $count) {
+                $recipes = $recipes[$recipe_id];
+            }
         }
 
         return response()->json([
