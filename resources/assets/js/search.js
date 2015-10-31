@@ -97,11 +97,14 @@ searchField.addEventListener('keydown', function(event) {
 }, false);
 
 searchSubmit.addEventListener('click', (event) => {
-  console.log('asdf');
+  console.log('sdaf', searchField.value);
   request
     .post('api/search/recipes')
     .send({
-      query: searchItems
+      products: [
+        ...searchItems.map(item => item.value),
+        searchField.value === '' ? undefined : searchField.value
+      ]
     })
     .end((error, response) => {
       console.log(error, response);
