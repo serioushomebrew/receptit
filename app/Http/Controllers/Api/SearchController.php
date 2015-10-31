@@ -101,6 +101,11 @@ class SearchController extends Controller
         ]);
     }
 
+    public function postSearchRecipes(Request $request)
+    {
+        
+    }
+
     public function postSearch(Request $request)
     {
         AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
