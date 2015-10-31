@@ -89,6 +89,7 @@ class AlbertHeijn
                     'tag' => $query,
                     'name' => $recipe->recepttitel,
                     'product-tags' => $recipeListTags,
+                    'image' => $recipe->receptafbeelding,
                     //'products' => $productList,
                 ];
             }
