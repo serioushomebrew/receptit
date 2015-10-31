@@ -77,11 +77,6 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api', 'as' => 'api::', 'middlew
         'uses' => 'SearchController@postSearchRecipes',
         'as' => 'search::recipes',
     ]);
-
-    Route::post('/search/recipes/2', [
-        'uses' => 'SearchController@postSearch',
-        'as' => 'search::recipes',
-    ]);
 });
 
 Route::resource('/scan', 'BonusClientController');

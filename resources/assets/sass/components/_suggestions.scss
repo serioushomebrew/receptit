@@ -1,0 +1,11 @@
+.suggestions {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+
+    li {
+        float: none;
+    }
+}
