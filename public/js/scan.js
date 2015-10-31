@@ -115,22 +115,24 @@ $(function() {
                         if(added.indexOf(productId) != -1)
                             continue;
 
+                        if(typeof data[i].joule == 'undefined')
+                            continue;
+
                         added.push(productId);
                         Product.getByNasaNr(productId, function(data) {
-                            console.log(data[0].nasanr, data[0]);
+                            //console.log(data[0].nasanr, data[0]);
                             var brand = data[0].merknaam;
                             var div = document.createElement('div');
                             div.classList.add('shop-item');
 
                             //div.innerHTML = data[0].nasanr;
 
-                            if(data[0].productomschrijving == '')
-                                div.innerHTML = data[0].assortimentsgroepoms;
-                            else
-                                div.innerHTML = data[0].productomschrijving;
-
-                            var container = document.querySelector('#shoppingList');
-                            div.addEventListener('click', App.shopAdd,false);
+                            if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
+                                div.innerHTML = data[0].recepttrefwoord;
+                                var container = document.querySelector('#shoppingList');
+                                div.addEventListener('click', App.shopAdd,false);
+                                console.log(data[0].recepttrefwoord);
+                            }
 
                             container.appendChild(div);
                         });
