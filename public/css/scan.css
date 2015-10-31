@@ -319,3 +319,12 @@ footer {
     padding-right: 7px;
     border: 1px solid black;
 }
+
+
+@media(max-width: 620px){
+    #container {
+        width: 160px;
+        margin: 20px 0 0 0;
+        padding: 10px;
+    }
+}

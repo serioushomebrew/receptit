@@ -11,7 +11,14 @@
 
     </head>
     <body>
-        <img src="images/logo.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9 col-xs-offset-1">
+                <img src="images/logo.png" class="img-responsive">
+            </div>
+        </div>
+    </div>
+
         <div class="search__wrapper">
           <section class="search" role="search">
               <ol class="search__tags"></ol>
@@ -29,10 +36,15 @@
         </div>
 
         </ul>
-                <div class="products">
-                    <div id="shoppingList">
+            <div class="row">
+                <div class="upcoming-alert col-xs-12">
+                    <div class="products">
+                        <div id="shoppingList">
+                        </div>
                     </div>
                 </div>
+            </div>
+
 
 
         <!-- Camera Modal -->
@@ -44,7 +56,7 @@
                         <h4 class="modal-title" id="myModalLabel">Scan uw bonus kaart</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="container" class="">
+                        <div id="container">
                             <div id="interactive" class="viewport"></div>
 
                         </div>

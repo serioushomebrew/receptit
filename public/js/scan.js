@@ -139,6 +139,7 @@ $(function() {
                     }
 
                     $('#scanModal').modal('hide');
+                    $('.upcoming-alert').addClass('alert alert-success');
                 }
 
             });
