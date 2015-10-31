@@ -10,6 +10,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \Illuminate\Support\Facades\Input;
 
+use App\ProductTag;
+
 class SearchController extends Controller
 {
     public function postLiveSearchProductTags(Request $request)
@@ -30,50 +32,68 @@ class SearchController extends Controller
             ]);
         }
 
-        // Fetch products
-        $ahProducts = AlbertHeijn::searchProducts($request->input('query'));
         $products = [];
+        $tags = ProductTag::where('query', $request->input('query'))
+            ->take(env('LIVESEARCH_PRODUCT_TAGS_LIMIT', 10))
+            ->get();
 
-        // Dont search if there arent any products available
-        if (count($ahProducts) === 0) {
-            return response()->json([
-                'products' => [],
-            ]);
-        }
+        if (count($tags) > 0) {
+            foreach($tags as $tag) {
+                $products[] = $tag->tag;
+            }
+        } else {
+            // Fetch products
+            $ahProducts = AlbertHeijn::searchProducts($request->input('query'));
 
-        foreach ($ahProducts as $product) {
-            // Limit to 10 rows
-            if (count($products) > 50) {
-                break;
+            // Dont search if there arent any products available
+            if (count($ahProducts) === 0) {
+                return response()->json([
+                    'products' => $products,
+                ]);
             }
 
-            // Skip products which doesnt contains any joule's
-            if (!isset($product->joule))
-            {
-                continue;
+            foreach ($ahProducts as $product) {
+                // Limit to 10 rows
+                if (count($products) > 50) {
+                    break;
+                }
+
+                // Skip products which doesnt contains any joule's
+                if (!isset($product->joule))
+                {
+                    continue;
+                }
+
+                // Find the product name
+                $productname = '';
+                foreach(explode(' ', $product->productomschrijving) as $name)
+                    if (strpos($name, $request->input('query')) !== false &&
+                        strpos($name, '-') === false &&
+                        strpos($name, '/') === false &&
+                        strpos($name, '&') === false &&
+                        strpos($name, '.') === false)
+                        $productname = strtolower($name);
+
+                // Skip already existing items
+                if (in_array($productname, $products)) {
+                    continue;
+                }
+
+                // Skip empty names
+                if (strlen($productname) === 0) {
+                    continue;
+                }
+
+                // Save it in the database
+                ProductTag::create([
+                    'query' => $request->input('query'),
+                    'tag' => $productname,
+                ]);
+
+                if (count($products) <= env('LIVESEARCH_PRODUCT_TAGS_LIMIT', 10)) {
+                    $products[] = $productname;
+                }
             }
-
-            // Find the product name
-            $productname = '';
-            foreach(explode(' ', $product->productomschrijving) as $name)
-                if (strpos($name, $request->input('query')) !== false &&
-                    strpos($name, '-') === false &&
-                    strpos($name, '/') === false &&
-                    strpos($name, '&') === false &&
-                    strpos($name, '.') === false)
-                    $productname = strtolower($name);
-
-            // Skip already existing items
-            if (in_array($productname, $products)) {
-                continue;
-            }
-
-            // Skip empty names
-            if (strlen($productname) === 0) {
-                continue;
-            }
-
-            $products[] = $productname;
         }
 
         return response()->json([
