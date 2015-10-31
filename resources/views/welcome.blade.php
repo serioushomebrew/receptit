@@ -20,30 +20,28 @@
     </div>
 
         <div class="search__wrapper">
-          <section class="search" role="search">
-              <ol class="search__tags"></ol>
-              <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
-              <button class="search__submit">
-                <i class="fa fa-search"></i>
-              </button>
-              <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
-                  <i class="fa fa-barcode"></i>
-              </button>
-          </section>
+            <section class="search" role="search">
+                <ol class="search__tags"></ol>
+                <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
+                <button class="search__submit">
+                    <i class="fa fa-search"></i>
+                </button>
+                <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
+                    <i class="fa fa-barcode"></i>
+                </button>
+            </section>
           <ul class="search__autocomplete">
 
           </ul>
         </div>
 
-        </ul>
-            <div class="row">
-                <div class="upcoming-alert col-xs-12">
-                    <div class="products">
-                        <div id="shoppingList">
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <div id="shoppingList" class="suggestions">
+        </div>
+
+        <div class="results">
+            
+        </div>
 
 
 

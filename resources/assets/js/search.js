@@ -7,10 +7,15 @@ const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
 const searchAutocomplete = document.querySelector('.search__autocomplete');
 const searchSubmit = document.querySelector('.search__submit');
+const resultsParent = document.querySelector('.results');
 
 let searchItems = [];
 let lastSearchItem = 0;
 let currentRequest;
+
+function sortCompletions(a, b) {
+  return a.length - b.length;
+}
 
 const requestCompletion = throttle(function (query) {
   if (currentRequest) {
@@ -22,9 +27,10 @@ const requestCompletion = throttle(function (query) {
     .send({ query })
     .end((error, response) => {
       currentRequest = null;
-      if (error === null) {
+      if (error === null && response.body.products) {
         searchAutocomplete.innerHTML = '';
 
+        response.body.products.sort(sortCompletions)
         response.body.products
           .slice(0, 10)
           .forEach(current => {
@@ -40,6 +46,34 @@ const requestCompletion = throttle(function (query) {
       }
     })
 }, 250);
+
+function getRecipes() {
+  console.log('sdaf');
+  request
+    .post('api/search/recipes')
+    .send({
+      products: [
+        ...searchItems.map(item => item.value),
+        searchField.value === '' ? undefined : searchField.value
+      ]
+    })
+    .end((error, response) => {
+      if (error === null) {
+        resultsParent.innerHTML = '';
+        response.body.slice(0, 12).forEach(item => {
+          // const img = document.createElement('img');
+          // img.src = item.image;
+          resultsParent.innerHTML += `
+            <div class="results__item">
+              <img class="results__image" src="${item.image}" />
+              <span class="results__label">${item.name}</span>
+            </div>
+          `;
+          // resultsParent.appendChild(img);
+        })
+      }
+    });
+}
 
 function removeTagClick(key) {
   const tag = searchItems.find(item => item.key === key);
@@ -72,7 +106,9 @@ export function addTag(value) {
     key,
     value,
     tag,
-  }]
+  }];
+
+  getRecipes();
 }
 
 searchField.addEventListener('keyup', function(event) {
@@ -96,17 +132,17 @@ searchField.addEventListener('keydown', function(event) {
   }
 }, false);
 
-searchSubmit.addEventListener('click', (event) => {
-  console.log('sdaf', searchField.value);
-  request
-    .post('api/search/recipes')
-    .send({
-      products: [
-        ...searchItems.map(item => item.value),
-        searchField.value === '' ? undefined : searchField.value
-      ]
-    })
-    .end((error, response) => {
-      console.log(error, response);
-    });
-})
+// searchSubmit.addEventListener('click', (event) => {
+//   console.log('sdaf', searchField.value);
+//   request
+//     .post('api/search/recipes')
+//     .send({
+//       products: [
+//         ...searchItems.map(item => item.value),
+//         searchField.value === '' ? undefined : searchField.value
+//       ]
+//     })
+//     .end((error, response) => {
+//       console.log(error, response);
+//     });
+// })
