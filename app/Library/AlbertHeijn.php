@@ -103,6 +103,8 @@ class AlbertHeijn
                     'name' => $recipe->recepttitel,
                     'product-tags' => $recipeListTags,
                     'product-score' => $score,
+                    'product-recipe-total' => $maxScore,
+                    'product-recipe-current' => $curScore,
                     'image' => $recipe->receptafbeelding,
                     //'products' => $productList,
                 ];
