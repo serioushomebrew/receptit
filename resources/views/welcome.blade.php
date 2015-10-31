@@ -7,16 +7,18 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" async>
     </head>
     <body>
-        <div class="search" role="search">
-            <ol class="search__tags"></ol>
-            <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
-            <button class="search__submit">
-              <i class="fa fa-search"></i>
-            </button>
-        </div>
-        <ul class="search__autocomplete">
+        <div class="search__wrapper">
+          <section class="search" role="search">
+              <ol class="search__tags"></ol>
+              <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
+              <button class="search__submit">
+                <i class="fa fa-search"></i>
+              </button>
+          </section>
+          <ul class="search__autocomplete">
 
-        </ul>
+          </ul>
+        </div>
         <script src="js/index.js"></script>
     </body>
 </html>

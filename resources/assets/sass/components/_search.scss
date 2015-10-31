@@ -9,6 +9,9 @@
   flex-direction: row;
   flex-wrap: nowrap;
   font-family: 'Source Sans Pro', sans-serif;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 20;
 
   &__tags {
     padding: 0;
@@ -44,12 +47,38 @@
     border: none;
   }
 
-  &__autocomplete {
-    max-width: 600px;
-    border: solid 1px black;
-    border-radius: 6px;
-    margin: 0 auto;
-    padding: 10px;
+  &__wrapper {
+    position: relative;
+  }
 
+  &__autocomplete {
+    position: absolute;
+    width: 100%;
+    top: 44px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 10;
+
+    li {
+      margin: 0 auto;
+      background: white;
+      width: 600px;
+      padding: 8px 20px;
+      box-sizing: border-box;
+      border-left: solid thin black;
+      border-right: solid thin black;
+      cursor: pointer;
+
+      &:hover {
+        background: #ddd;
+      }
+
+      &:last-child {
+        border-bottom: solid thin black;
+        border-radius: 0 0 6px 6px;
+      }
+    }
   }
 }
