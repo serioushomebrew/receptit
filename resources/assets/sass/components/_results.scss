@@ -37,7 +37,12 @@
     flex-wrap: wrap;
     justify-content: space-around;
 
-    img {
+    &__image {
+        width: 150px;
+        height: 150px;
+    }
+
+    &__item {
         margin-bottom: 14px;
         animation-duration: 1s;
         animation-name: fadeInUp;

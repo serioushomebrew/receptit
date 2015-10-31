@@ -65,7 +65,8 @@ function getRecipes() {
           // img.src = item.image;
           resultsParent.innerHTML += `
             <div class="results__item">
-              <img src="${item.image}" />
+              <img class="results__image" src="${item.image}" />
+              <span class="results__label">${item.name}</span>
             </div>
           `;
           // resultsParent.appendChild(img);
