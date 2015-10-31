@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use \Illuminate\Support\Facades\Input;
 
 class SearchController extends Controller
 {
@@ -59,19 +60,43 @@ class SearchController extends Controller
 
     public function postSearch(Request $request)
     {
-
-
-        // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
-        // $products = $albertHeijn->searchProducts('banaan');
-
+        $ingredients = (array) Input::get('query');
 
         AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
         dd(AlbertHeijn::searchRecipes('banaan'));
 
-        // dd($products);
+        $rating = array();
+        $recipes = array();
+        foreach($ingredients as $ingredient)
+        {
+            foreach(AlbertHeijn::searchRecipes($ingredient) as $recipe)
+            {
+                array_push($rating, $recipe->receptid);
 
-        // return response()->json([
-        //
-        // ]);
+                if(!isset($recipes[$recipe->receptid]))
+                {
+                    $recipes[$recipe->receptid] = $recipe;
+                }
+            }
+        }
+
+        if(!empty($rating))
+        {
+            $rating = array_count_values($rating);
+        }
+
+
+//        // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
+//        // $products = $albertHeijn->searchProducts('banaan');
+//
+//
+//        AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
+//        dd(AlbertHeijn::searchRecipes('banaan'));
+//
+//        // dd($products);
+//
+//        // return response()->json([
+//        //
+//        // ]);
     }
 }
