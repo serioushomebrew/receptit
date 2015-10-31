@@ -14,7 +14,6 @@
               <i class="fa fa-search"></i>
             </button>
         </div>
-
         <script src="js/index.js"></script>
     </body>
 </html>

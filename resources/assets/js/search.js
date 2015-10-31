@@ -1,9 +1,22 @@
+import products from './products';
+import request from 'superagent';
+import { debounce } from 'lodash/function';
+
 const search = document.querySelector('.search');
 const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
 
 let searchItems = [];
 let lastSearchItem = 0;
+
+function requestCompletion(query) {
+  request
+    .post('/search/product-tags/')
+    .send({ query })
+    .end((error, response) => {
+      console.log(error, response);
+    })
+}
 
 function removeTagClick(key) {
   const tag = searchItems.find(item => item.key === key);
@@ -17,7 +30,7 @@ function removeLastTag() {
   searchTags.removeChild(tag.tag);
 }
 
-function addTag(value) {
+export function addTag(value) {
   if (value === '') return;
   const tag = document.createElement('div');
   const removeTag = document.createElement('button');
@@ -39,8 +52,12 @@ function addTag(value) {
   }]
 }
 
+searchField.addEventListener('keyup', function(event) {
+  requestCompletion(event.target.value);
+});
+
 searchField.addEventListener('keydown', function(event) {
-  console.log(event.keyCode);
+
   if (event.keyCode === 8 && event.target.value === '') {
     removeLastTag();
   } else if (event.keyCode === 188 || event.keyCode === 13) {
@@ -52,5 +69,7 @@ searchField.addEventListener('keydown', function(event) {
     event.target.value = '';
 
     event.preventDefault();
+  } else {
+    // debounce(() => { requestCompletion(event.target.value) }, 250);
   }
 }, false);
