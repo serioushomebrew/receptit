@@ -101,6 +101,17 @@ class SearchController extends Controller
         ]);
     }
 
+    public function postSearchRecipes(Request $request)
+    {
+        AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
+
+        $products = $request->json()->get('products');
+
+        $recipes = AlbertHeijn::searchRecipes($products);
+
+        return response()->toJson($recipes);
+    }
+
     public function postSearch(Request $request)
     {
         AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));

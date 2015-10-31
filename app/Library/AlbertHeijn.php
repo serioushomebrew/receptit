@@ -53,21 +53,49 @@ class AlbertHeijn
     /**
      * Returns recipes where the ingredient stands in
      *
-     * @param string $query Ingredient which we want to search in recipes
+     * @param array $products Ingredient which we want to search in recipes
      * @return object JSON object with results
      */
-    public static function searchRecipes($query)
+    public static function searchRecipes($queryList)
     {
-        $response =  Curl::to(self::$_requestUrl['recipes'])
-            ->withData([
-                'personalkey' => self::$_apiKey,
-                'receptomschrijving' => $query,
-            ])
-            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
-            ->asJson()
-            ->get();
+        // A list which contains all recipes that matches the product request
+        $recipes = [];
 
-        return $response;
+        // Search a recipe for each product type
+        foreach($queryList as $query) {
+            $recipeList = Curl::to(self::$_requestUrl['recipes'])
+                ->withData([
+                    'personalkey' => self::$_apiKey,
+                    'receptingredienten' => $query,
+                ])
+                ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
+                ->asJson()
+                ->get();
+
+            // For each recipe we need the product listing
+            foreach($recipeList as $recipe) {
+                // We need to hack this back appending the api key...
+                /*$productList = Curl::to($recipe->productenurl . '&personalkey=' . self::$_apiKey)
+                    ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
+                    ->asJson()
+                    ->get();*/
+
+                $recipeListTags = $recipe->receptzoektermen;
+                $recipeListTags = str_replace(' ', '', $recipeListTags);
+                $recipeListTags = explode('|', $recipeListTags);
+
+                // Append the recipe with product to the list
+                $recipes[] = [
+                    'tag' => $query,
+                    'name' => $recipe->recepttitel,
+                    'product-tags' => $recipeListTags,
+                    'image' => $recipe->receptafbeelding,
+                    //'products' => $productList,
+                ];
+            }
+        }
+
+        return $recipes;
     }
 
     /**
