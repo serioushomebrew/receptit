@@ -2,32 +2,47 @@
 
 namespace App\Library;
 
+// use Curl;
 use Ixudra\Curl\Facades\Curl;
 
 class AlbertHeijn
 {
+    /**
+     * A list of API request urls
+     * @var array
+     */
+    private static $_requestUrl = [
+        'products' => 'https://frahmework.ah.nl/ah/json/producten',
+    ];
+
+    /**
+     * The AlbertHeijn API key for accessing their api data
+     * @var string
+     */
     private static $_apiKey = '';
 
-    public static function apiKey($apiKey)
+    /**
+     * Set the API key to the private variable
+     * @param string $apiKey The AlbertHeijn API key
+     */
+    public static function setApiKey($apiKey)
     {
         self::$_apiKey = $apiKey;
     }
 
     /**
-     * Searches products that match the term
-     *
-     * @param string $term The search term
-     * @return object JSON object with results
+     * Search the AlbertHeijn
+     * @param  [type] $query [description]
+     * @return [type]        [description]
      */
-    public static function products($term)
+    public static function searchProducts($query)
     {
-        $response =  Curl::to('https://frahmework.ah.nl/ah/json/producten')
+        $request = Curl::to(self::$_requestUrl['products'])
             ->withData([
-                'productomschrijving' => $term,
-                'personalkey' => self::$_apiKey
-            ])
-            ->get();
+                'personalkey' => self::$_apiKey,
+                'productomschrijving' => $query,
+            ])->get();
 
-        dd($response);
+        dd($request);
     }
 }
