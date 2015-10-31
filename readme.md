@@ -6,6 +6,9 @@ Dutch Open Hackathon 2015
 2. Run `vagrant up` to bootup the virtual machine
 3. Go to [http://recept.it:8000](http://recept.it:8000)
 
+## Contributors
+- Daan van der Berg
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

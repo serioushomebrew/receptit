@@ -35,7 +35,7 @@ class SearchController extends Controller
         $products = [];
 
         // Dont search if there arent any products available
-        if (count($ahProducts)) {
+        if (count($ahProducts) === 0) {
             return response()->json([
                 'products' => [],
             ]);
