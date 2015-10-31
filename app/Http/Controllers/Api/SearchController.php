@@ -162,7 +162,10 @@ class SearchController extends Controller
             $rating = array_slice($rating, 0, 6, true);
 
             foreach($rating as $recipe_id => $count) {
-                array_push($ordered, $recipes[$recipe_id]);
+                $recipe = $recipes[$recipe_id];
+                $recipe->products = AlbertHeijn::request($recipe->productenurl);
+
+                array_push($ordered, $recipe);
             }
             unset($recipes);
         }

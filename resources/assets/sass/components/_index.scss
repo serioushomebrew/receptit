@@ -1,6 +1,10 @@
+html, body {
+  min-height: 100%;
+}
+
 body {
   background-image: url(../images/background.jpg);
-  background-position: center 20%;
+  background-position: center 10%;
   background-repeat: no-repeat;
   background-size: cover;
 }
