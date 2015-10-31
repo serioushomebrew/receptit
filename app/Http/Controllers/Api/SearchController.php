@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \Illuminate\Support\Facades\Input;
 
 use App\ProductTag;
 
@@ -115,13 +114,6 @@ class SearchController extends Controller
     public function postSearch(Request $request)
     {
         AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
-
-        // Require a query string in order to continue
-        if (!$request->has('query')) {
-            return response()->json([
-                'error' => 'Missing query input',
-            ]);
-        }
 
         $rating = [];
         $recipes = [];
