@@ -115,10 +115,11 @@ class SearchController extends Controller
 
         if (!empty($rating)) {
             $rating = array_count_values($rating);
-        }
+            asort($rating);
 
-        foreach($rating as $recipe_id => $count) {
-            $recipes = $recipes[$recipe_id];
+            foreach($rating as $recipe_id => $count) {
+                $recipes = $recipes[$recipe_id];
+            }
         }
 
         return response()->json([
