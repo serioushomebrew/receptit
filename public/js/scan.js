@@ -67,6 +67,10 @@ $(function() {
         App.init();
     });
 
+    $('#scanModal').on('hide.bs.modal', function() {
+        Quagga.stop();
+    });
+
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
             drawingCanvas = Quagga.canvas.dom.overlay;
