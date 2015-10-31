@@ -10,17 +10,21 @@
 
     </head>
     <body>
-        <div class="search" role="search">
-            <ol class="search__tags"></ol>
-            <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
-            <button class="search__submit">
-              <i class="fa fa-search"></i>
-            </button>
-            <button class="scan__submit" data-toggle="modal" data-target="#scanModal">
-                <i class="fa fa-camera"></i>
-            </button>
+        <div class="search__wrapper">
+          <section class="search" role="search">
+              <ol class="search__tags"></ol>
+              <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
+              <button class="search__submit">
+                <i class="fa fa-search"></i>
+              </button>
+              <button class="scan__submit" data-toggle="modal" data-target="#scanModal">
+                  <i class="fa fa-camera"></i>
+              </button>
+          </section>
+          <ul class="search__autocomplete">
+
+          </ul>
         </div>
-        <ul class="search__autocomplete">
 
         </ul>
         <div class="products">
