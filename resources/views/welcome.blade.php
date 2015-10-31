@@ -10,6 +10,7 @@
 
     </head>
     <body>
+        <img src="images/logo.png">
         <div class="search__wrapper">
           <section class="search" role="search">
               <ol class="search__tags"></ol>
