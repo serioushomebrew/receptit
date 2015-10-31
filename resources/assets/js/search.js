@@ -1,22 +1,44 @@
 import products from './products';
 import request from 'superagent';
-import { debounce } from 'lodash/function';
+import { throttle } from 'lodash/function';
 
 const search = document.querySelector('.search');
 const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
+const searchAutocomplete = document.querySelector('.search__autocomplete');
 
 let searchItems = [];
 let lastSearchItem = 0;
+let currentRequest;
 
-function requestCompletion(query) {
-  request
-    .post('/search/product-tags/')
+const requestCompletion = throttle(function (query) {
+  if (currentRequest) {
+    currentRequest.abort();
+  }
+
+  currentRequest = request
+    .post('api/search/product-tags/')
     .send({ query })
     .end((error, response) => {
-      console.log(error, response);
+      currentRequest = null;
+      if (error === null) {
+        searchAutocomplete.innerHTML = '';
+
+        response.body.products
+          .slice(0, 10)
+          .forEach(current => {
+            const li = document.createElement('li');
+            li.addEventListener('click', () => {
+              addTag(current);
+              searchAutocomplete.innerHTML = '';
+              searchField.value = '';
+            });
+            li.textContent = current;
+            searchAutocomplete.appendChild(li);
+          });
+      }
     })
-}
+}, 250);
 
 function removeTagClick(key) {
   const tag = searchItems.find(item => item.key === key);
@@ -70,6 +92,5 @@ searchField.addEventListener('keydown', function(event) {
 
     event.preventDefault();
   } else {
-    // debounce(() => { requestCompletion(event.target.value) }, 250);
   }
 }, false);

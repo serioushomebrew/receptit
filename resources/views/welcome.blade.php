@@ -12,7 +12,7 @@
     <body>
         <div class="search" role="search">
             <ol class="search__tags"></ol>
-            <input type="search" class="search__field" autofocus autosave autocomplete placeholder="Wat heb ik in huis?" />
+            <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
             <button class="search__submit">
               <i class="fa fa-search"></i>
             </button>
@@ -20,6 +20,9 @@
                 <i class="fa fa-camera"></i>
             </button>
         </div>
+        <ul class="search__autocomplete">
+
+        </ul>
         <div class="products">
             <div id="shoppingList">
             </div>

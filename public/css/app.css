@@ -41,5 +41,11 @@
   .search__submit, .scan__submit {
     background: none;
     border: none; }
+  .search__autocomplete {
+    max-width: 600px;
+    border: solid 1px black;
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: 10px; }
 
 /*# sourceMappingURL=app.css.map */

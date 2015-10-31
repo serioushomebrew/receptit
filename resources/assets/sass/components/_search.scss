@@ -44,4 +44,12 @@
     border: none;
   }
 
+  &__autocomplete {
+    max-width: 600px;
+    border: solid 1px black;
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: 10px;
+
+  }
 }
