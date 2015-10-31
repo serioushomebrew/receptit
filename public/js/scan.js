@@ -2,6 +2,7 @@ var App;
 $(function() {
 
     App = {
+        running : false,
         init : function() {
             var self = this;
 
@@ -10,6 +11,7 @@ $(function() {
                     return self.handleError(err);
                 }
                 Quagga.start();
+                App.running = true;
             });
         },
 
@@ -68,7 +70,8 @@ $(function() {
     });
 
     $('#scanModal').on('hide.bs.modal', function() {
-        Quagga.stop();
+        if(App.running)
+            Quagga.stop();
     });
 
     Quagga.onProcessed(function(result) {
@@ -100,6 +103,7 @@ $(function() {
 
         if(code.substr(0,1) == 2){
             Quagga.stop();
+            App.running = false;
             console.clear();
 
             console.log('bonus card found, gettings client list.');
@@ -124,21 +128,20 @@ $(function() {
 
                         added.push(productId);
                         Product.getByNasaNr(productId, function(data) {
-                            //console.log(data[0].nasanr, data[0]);
-                            var brand = data[0].merknaam;
+
                             var div = document.createElement('div');
                             div.classList.add('shop-item');
                             div.classList.add('search__tag');
 
-                            //div.innerHTML = data[0].nasanr;
+                            if(typeof data[0] != 'undefined'){
+                                if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
+                                    div.innerHTML = data[0].recepttrefwoord;
+                                    var container = document.querySelector('#shoppingList');
+                                    div.addEventListener('click', App.shopAdd,false);
 
-                            if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
-                                div.innerHTML = data[0].recepttrefwoord;
-                                var container = document.querySelector('#shoppingList');
-                                div.addEventListener('click', App.shopAdd,false);
+                                    container.appendChild(div);
+                                }
                             }
-
-                            container.appendChild(div);
                         });
                     }
 
