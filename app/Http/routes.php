@@ -26,3 +26,5 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api', 'as' => 'api::', 'middlew
         'as' => 'search',
     ]);
 });
+
+Route::resource('/scan', 'BonusClientController');
