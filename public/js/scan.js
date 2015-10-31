@@ -1,6 +1,7 @@
+var App;
 $(function() {
 
-    var App = {
+    App = {
         init : function() {
             var self = this;
 
@@ -11,6 +12,15 @@ $(function() {
                 Quagga.start();
             });
         },
+
+        shopAdd : function(e){
+            var name = e.currentTarget.innerHTML;
+            addTag(name);
+            e.currentTarget.remove();
+
+
+        },
+
         inputMapper: {
             inputStream: {
                 constraints: function(value){
@@ -35,8 +45,8 @@ $(function() {
             inputStream: {
                 type : "LiveStream",
                 constraints: {
-                    width: 640,
-                    height: 480,
+                    width: 160,
+                    height: 127,
                     facing: "environment" // or user
                 }
             },
@@ -53,7 +63,9 @@ $(function() {
         lastResult : null
     };
 
-    App.init();
+    $('#scanModal').on('shown.bs.modal', function () {
+        App.init();
+    });
 
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
@@ -90,13 +102,12 @@ $(function() {
 
             var added = [];
             var title = document.querySelector('#title');
-            Client.getShoppingList(13555,function(data){
+            Client.getShoppingList(10265,function(data){
 
 
                 if(typeof data[0] == 'undefined') {
-                    title.innerHTML = 'Er zijn geen aankoppen gekoppeld aan uw Bonus kaart.';
+                    alert('Er zijn geen aankoppen gekoppeld aan uw Bonus kaart.');
                 } else {
-                    title.innerHTML = 'Uw aankopen';
 
                     for(var i =0; i < data.length; i++){
                         var productId = data[i].nasanr;
@@ -105,23 +116,27 @@ $(function() {
                             continue;
 
                         added.push(productId);
-                        Product.getByNasaNr(productId, function(data){
+                        Product.getByNasaNr(productId, function(data) {
+                            console.log(data[0].nasanr, data[0]);
                             var brand = data[0].merknaam;
                             var div = document.createElement('div');
-                            if(brand == 'AH')
-                                div.innerHTML = data[0].productomschrijving;
+                            div.classList.add('shop-item');
+
+                            //div.innerHTML = data[0].nasanr;
+
+                            if(data[0].productomschrijving == '')
+                                div.innerHTML = data[0].assortimentsgroepoms;
                             else
-                                div.innerHTML = brand;
+                                div.innerHTML = data[0].productomschrijving;
+
                             var container = document.querySelector('#shoppingList');
+                            div.addEventListener('click', App.shopAdd,false);
+
                             container.appendChild(div);
                         });
-
-
-
                     }
 
-                    console.log(added);
-
+                    $('#scanModal').modal('hide');
                 }
 
             });
