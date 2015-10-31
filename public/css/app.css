@@ -1,13 +1,16 @@
+html, body {
+  min-height: 100%; }
+
 body {
   background-image: url(../images/background.jpg);
-  background-position: center 20%;
+  background-position: center 10%;
   background-repeat: no-repeat;
   background-size: cover; }
 
 .search {
+  position: relative;
   display: block;
   max-width: 600px;
-  border: solid 1px black;
   border-radius: 6px;
   margin: 0 auto;
   padding: 10px;
@@ -23,7 +26,8 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  z-index: 20; }
+  z-index: 20;
+  margin-top: 20px; }
   .search__tags {
     padding: 0;
     margin: 0; }
@@ -47,7 +51,7 @@ body {
     -ms-flex-positive: 1;
     flex-grow: 1;
     margin-left: 8px; }
-  .search__submit {
+  .search__submit, .search .scan__submit {
     background: none;
     border: none; }
   .search__wrapper {
@@ -55,7 +59,9 @@ body {
   .search__autocomplete {
     position: absolute;
     width: 100%;
-    top: 44px;
+    bottom: 0px;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
     left: 0;
     padding: 0;
     margin: 0;
@@ -67,13 +73,10 @@ body {
       max-width: 580px;
       padding: 8px 20px;
       box-sizing: border-box;
-      border-left: solid thin black;
-      border-right: solid thin black;
       cursor: pointer; }
       .search__autocomplete li:hover {
         background: #ddd; }
       .search__autocomplete li:last-child {
-        border-bottom: solid thin black;
         border-radius: 0 0 6px 6px; }
 
 /*# sourceMappingURL=app.css.map */

@@ -124,6 +124,7 @@ $(function() {
                             var brand = data[0].merknaam;
                             var div = document.createElement('div');
                             div.classList.add('shop-item');
+                            div.classList.add('search__tag');
 
                             //div.innerHTML = data[0].nasanr;
 
@@ -131,7 +132,6 @@ $(function() {
                                 div.innerHTML = data[0].recepttrefwoord;
                                 var container = document.querySelector('#shoppingList');
                                 div.addEventListener('click', App.shopAdd,false);
-                                console.log(data[0].recepttrefwoord);
                             }
 
                             container.appendChild(div);

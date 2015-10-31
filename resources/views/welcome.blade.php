@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recept.it</title>
         <link href="css/app.css" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css' async>
@@ -17,8 +18,8 @@
               <button class="search__submit">
                 <i class="fa fa-search"></i>
               </button>
-              <button class="scan__submit" data-toggle="modal" data-target="#scanModal">
-                  <i class="fa fa-camera"></i>
+              <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
+                  <i class="fa fa-barcode"></i>
               </button>
           </section>
           <ul class="search__autocomplete">
@@ -27,10 +28,11 @@
         </div>
 
         </ul>
-        <div class="products">
-            <div id="shoppingList">
-            </div>
-        </div>
+                <div class="products">
+                    <div id="shoppingList">
+                    </div>
+                </div>
+
 
         <!-- Camera Modal -->
         <div class="modal fade" id="scanModal" tabindex="-1" role="dialog" aria-labelledby="scanModalLabel">
@@ -41,7 +43,7 @@
                         <h4 class="modal-title" id="myModalLabel">Scan uw bonus kaart</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="container" class="container">
+                        <div id="container" class="">
                             <div id="interactive" class="viewport"></div>
 
                         </div>
