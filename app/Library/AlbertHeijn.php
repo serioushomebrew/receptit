@@ -53,6 +53,24 @@ class AlbertHeijn
     /**
      * Returns recipes where the ingredient stands in
      *
+     * @param array $query Ingredient which we want to search in recipes
+     * @return object JSON object with results
+     */
+    public static function searchRecipe($query)
+    {
+        return Curl::to(self::$_requestUrl['recipes'])
+            ->withData([
+                'personalkey' => self::$_apiKey,
+                'receptingredienten' => $query,
+            ])
+            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
+            ->asJson()
+            ->get();
+    }
+
+    /**
+     * Returns recipes where the ingredient stands in
+     *
      * @param array $products Ingredient which we want to search in recipes
      * @return object JSON object with results
      */
@@ -80,20 +98,50 @@ class AlbertHeijn
                     ->asJson()
                     ->get();*/
 
+                if(!isset($recipe->receptzoektermen))
+                    continue;
+
                 $recipeListTags = $recipe->receptzoektermen;
                 $recipeListTags = str_replace(' ', '', $recipeListTags);
                 $recipeListTags = explode('|', $recipeListTags);
 
+                $maxScore = count($recipeListTags);
+                $curScore = 0;
+                foreach($recipeListTags as $item) {
+                    if(in_array($item, $queryList)) {
+                        $curScore++;
+                    }
+                }
+                $score = $curScore / $maxScore;
+
                 // Append the recipe with product to the list
                 $recipes[] = [
+                    'id' => $recipe->receptid,
                     'tag' => $query,
                     'name' => $recipe->recepttitel,
                     'product-tags' => $recipeListTags,
+                    'product-score' => $score,
                     'image' => $recipe->receptafbeelding,
                     //'products' => $productList,
                 ];
             }
         }
+
+        // Remove duplicate
+        $recipes = array_filter($recipes, function ($item) {
+            return true;
+        });
+
+        // Sort, based in completed recipe's
+        usort($recipes, function($a, $b) {
+            if($a['product-score'] > $b['product-score']) {
+                return -1;
+            } else if($a['product-score'] < $b['product-score']) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
 
         return $recipes;
     }
