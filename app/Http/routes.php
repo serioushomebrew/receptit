@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'api', 'as' => 'api::', 'middlew
         'as' => 'search::product-tags',
     ]);
 
-    Route::post('/search', [
+    Route::post('/search/recipes', [
         'uses' => 'SearchController@postSearch',
         'as' => 'search',
     ]);
