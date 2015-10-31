@@ -40,17 +40,33 @@ class SearchController extends Controller
                 break;
             }
 
+            // Skip products which doesnt contains any joule's
+            if (!isset($product->joule))
+            {
+                continue;
+            }
+
+            // Find the product name
+            $productname = '';
+            foreach(explode(' ', $product->productomschrijving) as $name)
+                if (strpos($name, $request->input('query')) !== false &&
+                    strpos($name, '-') === false &&
+                    strpos($name, '/') === false &&
+                    strpos($name, '&') === false &&
+                    strpos($name, '.') === false)
+                    $productname = strtolower($name);
+
             // Skip already existing items
-            if (in_array($product->productomschrijving, $products)) {
+            if (in_array($productname, $products)) {
                 continue;
             }
 
             // Skip empty names
-            if (strlen($product->productomschrijving) === 0) {
+            if (strlen($productname) === 0) {
                 continue;
             }
 
-            $products[] = $product->productomschrijving;
+            $products[] = $productname;
         }
 
         return response()->json([
