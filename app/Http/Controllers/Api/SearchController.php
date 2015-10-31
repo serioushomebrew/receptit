@@ -37,7 +37,7 @@ class SearchController extends Controller
             ->get();
 
         if (count($tags) > 0) {
-            foreach($tags as $tag) {
+            foreach ($tags as $tag) {
                 $products[] = $tag->tag;
             }
         } else {
@@ -58,19 +58,19 @@ class SearchController extends Controller
                 }
 
                 // Skip products which doesnt contains any joule's
-                if (!isset($product->joule))
-                {
+                if (!isset($product->joule)) {
                     continue;
                 }
 
                 // Find the product name
                 $productname = '';
-                foreach(explode(' ', $product->productomschrijving) as $name)
+                foreach (explode(' ', $product->productomschrijving) as $name)
                     if (strpos($name, $request->input('query')) !== false &&
                         strpos($name, '-') === false &&
                         strpos($name, '/') === false &&
                         strpos($name, '&') === false &&
-                        strpos($name, '.') === false)
+                        strpos($name, '.') === false
+                    )
                         $productname = strtolower($name);
 
                 // Skip already existing items
@@ -127,10 +127,10 @@ class SearchController extends Controller
                 // Get recipes with this ingredient
                 $ahRecipes = AlbertHeijn::searchRecipe($ingredient);
 
-                if(!empty($ahRecipes)) {
-                    foreach($ahRecipes as $recipe) {
+                if (!empty($ahRecipes)) {
+                    foreach ($ahRecipes as $recipe) {
                         // check if result is valid
-                        if($recipe->querystatus == 0) {
+                        if ($recipe->querystatus == 0) {
                             continue;
                         }
 
@@ -139,7 +139,7 @@ class SearchController extends Controller
 
                         // save the recipe to an array
                         if (!array_key_exists($recipe->receptid, $recipes)) {
-                            $recipes[$recipe->receptid] = (array) $recipe;
+                            $recipes[$recipe->receptid] = (array)$recipe;
                         }
                     }
                 }
@@ -152,7 +152,7 @@ class SearchController extends Controller
 
             // sorts
             $order = array();
-            foreach($recipes as $key => $value) {
+            foreach ($recipes as $key => $value) {
                 $ingredients = explode('-', $value['receptingredienten']);
                 $ingredients = (count($ingredients) + 1);
 
@@ -166,7 +166,7 @@ class SearchController extends Controller
             $recipes = array_slice($recipes, 0, 6, true);
 
             // add products value
-            foreach($recipes as $key => $value) {
+            foreach ($recipes as $key => $value) {
                 $recipes[$key]['products'] = AlbertHeijn::request($value['productenurl']);
             }
         }
