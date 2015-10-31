@@ -113,6 +113,11 @@ class AlbertHeijn
 
         // Remove duplicate
         $recipes = array_filter($recipes, function ($item) {
+            static $idList = [];
+            if (in_array($item['id'], $idList)) {
+                return false;
+            }
+            $idList[] = $item['id'];
             return true;
         });
 
