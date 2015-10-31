@@ -16,8 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    /*$url = 'https:\/\/frahmework.ah.nl\/ah\/json\/producten?recepttags=banaan|halfvollemelk|jesaromabanaan|bananenschuimpjes|spuitbusslagroom|minim&m&weergaveprionr=1';
+    $url = 'https:\/\/frahmework.ah.nl\/ah\/json\/producten?recepttags=banaan|halfvollemelk|jesaromabanaan|bananenschuimpjes|spuitbusslagroom|minim%20m&weergaveprionr=1';
 
+
+
+/*
     $urlSplit = explode('?', $url);
     if(count($queryString) > 1) {
         $url = $urlSplit[0] . '?';
