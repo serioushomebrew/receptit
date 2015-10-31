@@ -13,6 +13,7 @@ class AlbertHeijn
      */
     private static $_requestUrl = [
         'products' => 'https://frahmework.ah.nl/ah/json/producten',
+        'recipes' => 'https://frahmework.ah.nl/ah/json/recepten',
     ];
 
     /**
@@ -43,6 +44,24 @@ class AlbertHeijn
                 'productomschrijving' => $query,
             ])->get();
 
-        dd($request);
+        return $request;
+    }
+
+    /**
+     * Returns recipes where the ingredient stands in
+     *
+     * @param string $ingredient Ingredient which we want to search in recipes
+     * @return object JSON object with results
+     */
+    public static function searchRecipes($query)
+    {
+        $response =  Curl::to(self::$_requestUrl['recipes'])
+            ->withData([
+                'personalkey' => self::$_apiKey,
+                'receptomschrijving' => $query,
+            ])
+            ->get();
+
+        return $response;
     }
 }
