@@ -16,6 +16,7 @@
 
 <section id="container" class="container">
     <div id="interactive" class="viewport"></div>
+    <div id="shoppingList"></div>
 </section>
 
 <script src="js/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>

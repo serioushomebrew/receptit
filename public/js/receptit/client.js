@@ -25,6 +25,23 @@ var Client = {
                 Client.data = data[0];
             }
         });
+    },
+
+    /**
+     * Get the shopping list of a client
+     *
+     * @param clientId of the client
+     */
+    getShoppingList : function(clientId){
+        var url = 'https://frahmework.ah.nl/ah/json/voedingswaardebon?klantid=13555&personalkey=rve67tITSGZb4vJo0CdPcRNlpnM1C14a';
+
+        $.get(url, function(data){
+            if(typeof data[0] == 'undefined'){
+                alert('No shopping list found');
+            }else{
+                Client.shopping = data[0];
+            }
+        });
     }
 
 };
