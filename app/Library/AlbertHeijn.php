@@ -42,7 +42,9 @@ class AlbertHeijn
             ->withData([
                 'personalkey' => self::$_apiKey,
                 'productomschrijving' => $query,
-            ])->get();
+            ])
+            ->asJson()
+            ->get();
 
         return $request;
     }
@@ -60,6 +62,7 @@ class AlbertHeijn
                 'personalkey' => self::$_apiKey,
                 'receptomschrijving' => $query,
             ])
+            ->asJson()
             ->get();
 
         return $response;
