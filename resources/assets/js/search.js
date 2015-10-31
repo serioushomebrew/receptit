@@ -6,6 +6,7 @@ const search = document.querySelector('.search');
 const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
 const searchAutocomplete = document.querySelector('.search__autocomplete');
+const searchSubmit = document.querySelector('.search__submit');
 
 let searchItems = [];
 let lastSearchItem = 0;
@@ -94,3 +95,15 @@ searchField.addEventListener('keydown', function(event) {
   } else {
   }
 }, false);
+
+searchSubmit.addEventListener('click', (event) => {
+  console.log('asdf');
+  request
+    .post('api/search/recipes')
+    .send({
+      query: searchItems
+    })
+    .end((error, response) => {
+      console.log(error, response);
+    });
+})
