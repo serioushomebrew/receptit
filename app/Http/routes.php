@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace' => 'Api', 'prefix' => 'api', 'as' => 'api::', 'middleware' => []], function () {
-    Route::post('/search', [
+    Route::post('/search/product-tags', [
+        'uses' => 'SearchController@postLiveSearchProductTags',
+        'as' => 'search::product-tags',
+    ]);
+
+    Route::post('/search/recipes', [
         'uses' => 'SearchController@postSearch',
         'as' => 'search',
     ]);

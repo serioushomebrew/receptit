@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Ixudra\Curl\CurlServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
@@ -196,6 +197,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Curl'      => Ixudra\Curl\Facades\Curl::class,
+
     ],
 
 ];

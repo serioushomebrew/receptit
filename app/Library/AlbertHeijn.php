@@ -38,19 +38,21 @@ class AlbertHeijn
      */
     public static function searchProducts($query)
     {
-        $request = Curl::to(self::$_requestUrl['products'])
+        $response = Curl::to(self::$_requestUrl['products'])
             ->withData([
                 'personalkey' => self::$_apiKey,
                 'productomschrijving' => $query,
-            ])->get();
+            ])
+            ->asJson()
+            ->get();
 
-        return $request;
+        return $response;
     }
 
     /**
      * Returns recipes where the ingredient stands in
      *
-     * @param string $ingredient Ingredient which we want to search in recipes
+     * @param string $query Ingredient which we want to search in recipes
      * @return object JSON object with results
      */
     public static function searchRecipes($query)
@@ -60,6 +62,7 @@ class AlbertHeijn
                 'personalkey' => self::$_apiKey,
                 'receptomschrijving' => $query,
             ])
+            ->asJson()
             ->get();
 
         return $response;
