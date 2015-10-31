@@ -84,7 +84,48 @@ $(function() {
 
         if(code.substr(0,1) == 2){
             Quagga.stop();
-            alert('Bonus Number: '+code);
+            console.clear();
+
+            console.log('bonus card found, gettings client list.');
+
+            var added = [];
+            var title = document.querySelector('#title');
+            Client.getShoppingList(13555,function(data){
+
+
+                if(typeof data[0] == 'undefined') {
+                    title.innerHTML = 'Er zijn geen aankoppen gekoppeld aan uw Bonus kaart.';
+                } else {
+                    title.innerHTML = 'Uw aankopen';
+
+                    for(var i =0; i < data.length; i++){
+                        var productId = data[i].nasanr;
+
+                        if(added.indexOf(productId) != -1)
+                            continue;
+
+                        added.push(productId);
+                        Product.getByNasaNr(productId, function(data){
+                            var brand = data[0].merknaam;
+                            var div = document.createElement('div');
+                            if(brand == 'AH')
+                                div.innerHTML = data[0].productomschrijving;
+                            else
+                                div.innerHTML = brand;
+                            var container = document.querySelector('#shoppingList');
+                            container.appendChild(div);
+                        });
+
+
+
+                    }
+
+                    console.log(added);
+
+                }
+
+            });
+
         }
     });
 

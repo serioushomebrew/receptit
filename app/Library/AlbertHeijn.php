@@ -43,6 +43,7 @@ class AlbertHeijn
                 'personalkey' => self::$_apiKey,
                 'productomschrijving' => $query,
             ])
+            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
             ->asJson()
             ->get();
 
@@ -62,6 +63,7 @@ class AlbertHeijn
                 'personalkey' => self::$_apiKey,
                 'receptomschrijving' => $query,
             ])
+            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
             ->asJson()
             ->get();
 

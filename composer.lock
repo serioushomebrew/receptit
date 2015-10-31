@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "14726129ac47ffafc3d1d1914f89c7b2",
-    "content-hash": "087bad51211fa498d94f3a7ba94e9be7",
+    "hash": "f6b407422d0864a8dfd511719c711ed3",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -282,16 +281,16 @@
         },
         {
             "name": "ixudra/curl",
-            "version": "6.0.0",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ixudra/curl.git",
-                "reference": "4799f5dff0daaa6037501b2ef704592a444b1dd0"
+                "reference": "0d333ee17ba51a1fe8a2abb2970b849f10564fea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ixudra/curl/zipball/4799f5dff0daaa6037501b2ef704592a444b1dd0",
-                "reference": "4799f5dff0daaa6037501b2ef704592a444b1dd0",
+                "url": "https://api.github.com/repos/ixudra/curl/zipball/0d333ee17ba51a1fe8a2abb2970b849f10564fea",
+                "reference": "0d333ee17ba51a1fe8a2abb2970b849f10564fea",
                 "shasum": ""
             },
             "require": {
@@ -321,7 +320,7 @@
                 "curl",
                 "laravel"
             ],
-            "time": "2015-10-29 21:42:11"
+            "time": "2015-10-31 09:52:25"
         },
         {
             "name": "jakub-onderka/php-console-color",
