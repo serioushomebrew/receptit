@@ -109,7 +109,7 @@ class SearchController extends Controller
 
         $recipes = AlbertHeijn::searchRecipes($products);
 
-        dd($recipes);
+        return response()->toJson($recipes);
     }
 
     public function postSearch(Request $request)
