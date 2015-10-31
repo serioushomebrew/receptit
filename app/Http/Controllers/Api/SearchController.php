@@ -34,7 +34,7 @@ class SearchController extends Controller
         $ahProducts = AlbertHeijn::searchProducts($request->input('query'));
         $products = [];
 
-        foreach($ahProducts as $product) {
+        foreach ($ahProducts as $product) {
             // Limit to 10 rows
             if (count($products) > 50) {
                 break;
@@ -76,43 +76,46 @@ class SearchController extends Controller
 
     public function postSearch(Request $request)
     {
-        $ingredients = (array) Input::get('query');
-
         AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
-        dd(AlbertHeijn::searchRecipes('banaan'));
+
+        // Require a query string in order to continue
+        if (!$request->has('query')) {
+            return response()->json([
+                'error' => 'Missing query input',
+            ]);
+        }
 
         $rating = array();
         $recipes = array();
-        foreach($ingredients as $ingredient)
-        {
-            foreach(AlbertHeijn::searchRecipes($ingredient) as $recipe)
-            {
-                array_push($rating, $recipe->receptid);
+        $ingredients = (array) Input::get('query');
+        foreach ($ingredients as $ingredient) {
 
-                if(!isset($recipes[$recipe->receptid]))
-                {
-                    $recipes[$recipe->receptid] = $recipe;
+            // Require at least 3 character inputs
+            if (strlen($ingredient) >= 3) {
+                $ahRecipes = AlbertHeijn::searchRecipes($ingredient);
+
+                if(!empty($ahRecipes)) {
+                    foreach($ahRecipes as $recipe) {
+                        array_push($rating, $recipe->receptid);
+
+                        if (!isset($recipes[$recipe->receptid])) {
+                            $recipes[$recipe->receptid] = $recipe;
+                        }
+                    }
                 }
             }
         }
 
-        if(!empty($rating))
-        {
+        if (!empty($rating)) {
             $rating = array_count_values($rating);
         }
 
+        foreach($rating as $recipe_id) {
+            $recipes = $recipes[$recipe_id];
+        }
 
-//        // $albertHeijn = new AlbertHeijn(env('API_KEY_ALBERTHEIJN'));
-//        // $products = $albertHeijn->searchProducts('banaan');
-//
-//
-//        AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
-//        dd(AlbertHeijn::searchRecipes('banaan'));
-//
-//        // dd($products);
-//
-//        // return response()->json([
-//        //
-//        // ]);
+        return response()->json([
+            'recipes' => $recipes,
+        ]);
     }
 }
