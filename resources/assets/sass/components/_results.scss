@@ -38,8 +38,20 @@
     justify-content: space-around;
 
     &__image {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__label {
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     &__item {
@@ -50,6 +62,9 @@
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
         opacity: 0;
+        width: 200px;
+        height: 200px;
+        position: relative;
 
         &:nth-child(1) {
             animation-delay: 0s;

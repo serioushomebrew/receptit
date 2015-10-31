@@ -10,3 +10,20 @@ body {
   background-attachment: fixed;
   overflow-y: visible;
 }
+
+.barcode-pointer {
+    position: absolute;
+    top: -66px;
+    right: -108px;
+    width: 90px;
+    height: 90px;
+    background: white;
+    border-radius: 50% 50% 50% 0;
+    padding: 25px 19px;
+    font-size: 17px;
+    line-height: 0.9;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: white;
+    color: #0098D4;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}

@@ -66,7 +66,12 @@ function getRecipes() {
           resultsParent.innerHTML += `
             <div class="results__item">
               <img class="results__image" src="${item.image}" />
-              <span class="results__label">${item.name}</span>
+              <span class="results__label">
+                ${item.name}
+                ${item['product-recipe-total']}
+                ${item['product-recipe-current']}
+              </span>
+
             </div>
           `;
           // resultsParent.appendChild(img);

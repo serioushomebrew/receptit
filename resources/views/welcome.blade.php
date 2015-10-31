@@ -29,6 +29,9 @@
                 <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
                     <i class="fa fa-barcode"></i>
                 </button>
+                <div class="barcode-pointer">
+                    scan je bonus kaart
+                </div>
             </section>
           <ul class="search__autocomplete">
 
@@ -40,7 +43,7 @@
         </div>
 
         <div class="results">
-            
+
         </div>
 
 
