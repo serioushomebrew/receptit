@@ -110,7 +110,7 @@ class SearchController extends Controller
             $rating = array_count_values($rating);
         }
 
-        foreach($rating as $recipe_id) {
+        foreach($rating as $recipe_id => $count) {
             $recipes = $recipes[$recipe_id];
         }
 
