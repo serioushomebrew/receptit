@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "66d2beed8e50cecedc1c0e3eb626005d",
+    "hash": "f6b407422d0864a8dfd511719c711ed3",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -280,6 +280,49 @@
             "time": "2014-12-20 21:24:13"
         },
         {
+            "name": "ixudra/curl",
+            "version": "6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ixudra/curl.git",
+                "reference": "0d333ee17ba51a1fe8a2abb2970b849f10564fea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ixudra/curl/zipball/0d333ee17ba51a1fe8a2abb2970b849f10564fea",
+                "reference": "0d333ee17ba51a1fe8a2abb2970b849f10564fea",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Ixudra\\Curl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Oris",
+                    "email": "jan.oris@ixudra.be"
+                }
+            ],
+            "description": "Custom PHP Curl library for the Laravel 5 framework - developed by Ixudra",
+            "homepage": "http://ixudra.be",
+            "keywords": [
+                "Ixudra",
+                "curl",
+                "laravel"
+            ],
+            "time": "2015-10-31 09:52:25"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -423,49 +466,6 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
-        },
-        {
-            "name": "kevinvdburgt/curl-hotfix",
-            "version": "dev-kevinvdburgt-patch-2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kevinvdburgt/curl.git",
-                "reference": "1d2699168a39a85d07c9ebdeafca17121795f773"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kevinvdburgt/curl/zipball/1d2699168a39a85d07c9ebdeafca17121795f773",
-                "reference": "1d2699168a39a85d07c9ebdeafca17121795f773",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": ">=4.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Ixudra\\Curl\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Oris",
-                    "email": "jan.oris@ixudra.be"
-                }
-            ],
-            "description": "Custom PHP Curl library for the Laravel 5 framework - developed by Ixudra",
-            "homepage": "http://ixudra.be",
-            "keywords": [
-                "Ixudra",
-                "curl",
-                "laravel"
-            ],
-            "time": "2015-10-31 09:57:07"
         },
         {
             "name": "laravel/framework",
@@ -3141,9 +3141,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "kevinvdburgt/curl-hotfix": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

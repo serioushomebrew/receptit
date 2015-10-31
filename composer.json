@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "kevinvdburgt/curl-hotfix": "dev-kevinvdburgt-patch-2",
+        "ixudra/curl": "6.0.1",
         "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
