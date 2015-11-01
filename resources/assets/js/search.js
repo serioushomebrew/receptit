@@ -67,10 +67,10 @@ function getRecipes() {
             <div class="results__item">
               <img class="results__image" src="${item.image}" />
               <span class="results__label">
-                ${item.name}
-                ${item['product-recipe-total']}
-                ${item['product-recipe-current']}
+                <span>${item.name}</span>
               </span>
+              ${item['product-recipe-total']}
+              ${item['product-recipe-current']}
 
             </div>
           `;
