@@ -37,6 +37,8 @@ body {
   width: 256px;
   background-color: #564337;
 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
   -webkit-transition: left .5s;
   -moz-transition: left .5s;
   -o-transition: left .5s;
@@ -46,26 +48,27 @@ body {
     left: 0;
   }
 
+  .logo {
+    margin: 17px auto 48px auto;
+    display: block;
+  }
+
   h2 {
-    margin: 20px 0;
+    margin: 20px 30px;
     color: #fff;
-    text-align: center;
     font-weight: 300;
     text-shadow: 0 0 0 #f6f3f0;
   }
 
   section {
     margin: 20px;
-
-    &:not(:last-child) {
-      padding-bottom: 20px;
-      border-bottom: 1px solid #6D6969;
-    }
+    padding-top: 20px;
+    border-top: 1px solid #6D6969;
 
     h3 {
       margin: 10px;
+      font-weight: 600;
       color: #fff;
-      text-align: center;
     }
 
     label {
@@ -82,7 +85,7 @@ body {
     z-index: 100;
     position: fixed;
     left: 0;
-    bottom: 200px;
+    bottom: calc(50% - 50px);
     width: 28px;
     font-size: 24px;
     height: 100px;
@@ -91,6 +94,9 @@ body {
     line-height: 100px;
     text-align: center;
     cursor: pointer;
+
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 
     -webkit-transition: left .5s;
     -moz-transition: left .5s;
