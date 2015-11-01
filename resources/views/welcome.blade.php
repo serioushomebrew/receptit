@@ -17,7 +17,7 @@
             <h2><i class="fa fa-filter"></i> Filters</h2>
 
             <section>
-                <h3>Vegatarisch</h3>
+                <h3>Dieet optie</h3>
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vegetarisch" class="filter" /> Vegetarisch</label><br />
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vlees" class="filter" /> Vlees</label><br />
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vis" class="filter" /> Vis</label><br />
