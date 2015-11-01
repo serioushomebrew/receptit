@@ -114,12 +114,14 @@ function removeTagClick(key) {
     const tag = searchItems.find(item => item.key === key);
     searchItems = searchItems.filter(item => item !== tag);
     searchTags.removeChild(tag.tag);
+    getRecipes();
 }
 
 function removeLastTag() {
     if (searchItems.length === 0) return;
     const tag = searchItems.pop();
     searchTags.removeChild(tag.tag);
+    getRecipes()
 }
 
 export function addTag(value) {
