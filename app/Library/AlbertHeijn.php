@@ -89,6 +89,9 @@ class AlbertHeijn
                 if (isset($filters['receptvleesvisofvega']) && $filters['receptvleesvisofvega'] != $recipe->receptvleesvisofvega) {
                     continue;
                 }
+                if (isset($filters['receptallergeneninfo']) && $filters['receptallergeneninfo'] != $recipe->receptallergeneninfo) {
+                    continue;
+                }
 
                 $recipeListTags = $recipe->receptzoektermen;
                 $recipeListTags = str_replace(' ', '', $recipeListTags);
