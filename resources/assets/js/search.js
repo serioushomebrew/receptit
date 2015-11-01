@@ -49,32 +49,43 @@ const requestCompletion = throttle(function (query) {
 
 function getRecipes() {
     console.log('sdaf');
-    request
-        .post('api/search/recipes')
-        .send({
+  var params = {
             products: [
                 ...searchItems.map(item => item.value),
                 searchField.value === '' ? undefined : searchField.value
             ]
-        })
+      },
+      receptvleesvisofvega = document.querySelector('input[name="receptvleesvisofvega"]:checked'),
+      receptallergeneninfo = document.querySelector('input[name="receptallergeneninfo"]:checked');
+
+  if(receptvleesvisofvega !== null) {
+    params['receptvleesvisofvega'] = receptvleesvisofvega.value;
+  }
+  if(receptallergeneninfo !== null) {
+    params['receptallergeneninfo'] = receptallergeneninfo.value;
+  }
+
+  request
+    .post('api/search/recipes')
+    .send(params)
         .end((error, response) => {
             if (error === null) {
                 resultsParent.innerHTML = '';
-                response.body.slice(0, 12).forEach(item => {
-                    let color = '#707317';
-                    let badge = `${item['product-recipe-current']}/${item['product-recipe-total']}`;
-                    if (item['product-score'] === 1) {
-                        color = 'gold';
-                        badge = '<i class="fa fa-check"></i>'
-                    }
-                    if (item['product-score'] < 0.75) color = '#F27F1B';
-                    if (item['product-score'] < 0.25) color = '#A63126';
+                if (response.body.length > 0) {
+                    response.body.slice(0, 12).forEach(item => {
+                        let color = '#707317';
+                        let badge = `${item['product-recipe-current']}/${item['product-recipe-total']}`;
+                        if (item['product-score'] === 1) {
+                            color = 'gold';
+                            badge = '<i class="fa fa-check"></i>'
+                        }
+                        if (item['product-score'] < 0.75) color = '#F27F1B';
+                        if (item['product-score'] < 0.25) color = '#A63126';
 
 
-
-                    // const img = document.createElement('img');
-                    // img.src = item.image;
-                    resultsParent.innerHTML += `
+                        // const img = document.createElement('img');
+                        // img.src = item.image;
+                        resultsParent.innerHTML += `
             <div class="results__item" onclick="showReceptModel(${item.id});">
               <img class="results__image" src="${item.image}" />
               <span class="results__label">
@@ -86,8 +97,15 @@ function getRecipes() {
 
             </div>
           `;
-                    // resultsParent.appendChild(img);
-                })
+                        // resultsParent.appendChild(img);
+                    })
+                } else {
+                    resultsParent.innerHTML += `
+            <div class="alert alert-info">
+              <strong>Helaas er is nog geen recept gevonden met deze ingredienten</strong><br /><a href="#">Klik hier</a> om een recept aan te maken
+            </div>
+          `;
+                }
             }
         });
 }
@@ -127,6 +145,10 @@ export function addTag(value) {
 
     getRecipes();
 }
+
+$('.filter').change(function() {
+  getRecipes();
+});
 
 searchField.addEventListener('keyup', function(event) {
     requestCompletion(event.target.value);
