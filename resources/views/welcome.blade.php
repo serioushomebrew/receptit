@@ -41,7 +41,7 @@
             <i class="fa fa-angle-right"></i>
         </div>
 
-    <video class="background-video" autoplay src="background.mp4"></video>
+    <video class="background-video" autoplay poster="background.png" src="background.mp4"></video>
     <script>
         document.querySelector('.background-video').playbackRate = 0.8;
     </script>
