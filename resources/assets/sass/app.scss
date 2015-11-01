@@ -4,3 +4,15 @@
 @import "components/search";
 @import "components/suggestions";
 @import "components/results";
+
+img.branding-logo {
+  transition: all .8s ease;
+  object-fit: contain;
+  height: 300px;
+}
+
+body.no-logo {
+  img.branding-logo {
+    height: 60px;
+  }
+}

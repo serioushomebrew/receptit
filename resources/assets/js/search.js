@@ -122,6 +122,8 @@ searchField.addEventListener('keyup', function(event) {
 
 searchField.addEventListener('keydown', function(event) {
 
+  document.body.classList.add('no-logo');
+
   if (event.keyCode === 8 && event.target.value === '') {
     removeLastTag();
   } else if (event.keyCode === 188 || event.keyCode === 13) {
