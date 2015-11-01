@@ -7,7 +7,6 @@ const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
 const searchAutocomplete = document.querySelector('.search__autocomplete');
 const searchSubmit = document.querySelector('.search__submit');
-const filters = document.querySelectorAll('.filter');
 const resultsParent = document.querySelector('.results');
 
 let searchItems = [];
@@ -49,66 +48,29 @@ const requestCompletion = throttle(function (query) {
 }, 250);
 
 function getRecipes() {
-  console.log('asdf');
-  var params = {
-        products: [
-          ...searchItems.map(item => item.value),
-          searchField.value === '' ? undefined : searchField.value
-        ]
-      },
-      receptvleesvisofvega = document.querySelector('input[name="receptvleesvisofvega"]:checked'),
-      receptallergeneninfo = document.querySelector('input[name="receptallergeneninfo"]:checked');
-
-  if(receptvleesvisofvega !== null) {
-    params['receptvleesvisofvega'] = receptvleesvisofvega.value;
-  }
-  if(receptallergeneninfo !== null) {
-    params['receptallergeneninfo'] = receptallergeneninfo.value;
-  }
-
+  console.log('sdaf');
   request
     .post('api/search/recipes')
-    .send(params)
+    .send({
+      products: [
+        ...searchItems.map(item => item.value),
+        searchField.value === '' ? undefined : searchField.value
+      ]
+    })
     .end((error, response) => {
       if (error === null) {
         resultsParent.innerHTML = '';
-
         response.body.slice(0, 12).forEach(item => {
-          let color = '#707317';
-          let badge = `${item['product-recipe-current']}/${item['product-recipe-total']}`;
-          if (item['product-score'] === 1) {
-            color = 'gold';
-            badge = '<i class="fa fa-check"></i>'
-          }
-          if (item['product-score'] < 0.75) color = '#F27F1B';
-          if (item['product-score'] < 0.25) color = '#A63126';
-
-
-
           // const img = document.createElement('img');
           // img.src = item.image;
           resultsParent.innerHTML += `
-            <div class="results__item" onclick="showReceptModel(${item.id});">
+            <div class="results__item">
               <img class="results__image" src="${item.image}" />
-              <span class="results__label">
-                <span class="title">${item.name}</span>
-              </span>
-              ${item['product-recipe-total']}
-              ${item['product-recipe-current']}
-
+              <span class="results__label">${item.name}</span>
             </div>
           `;
-
-            // resultsParent.appendChild(img);
-          })
-        } else {
-          resultsParent.innerHTML += `
-            <div class="alert alert-info">
-              <strong>Helaas er is nog geen recept gevonden met deze ingredienten</strong><br /><a href="#">Klik hier</a> om een recept aan te maken
-            </div>
-          `;
-        }
-
+          // resultsParent.appendChild(img);
+        })
       }
     });
 }
@@ -149,17 +111,11 @@ export function addTag(value) {
   getRecipes();
 }
 
-$(filters).change(function() {
-  getRecipes();
-});
-
 searchField.addEventListener('keyup', function(event) {
   requestCompletion(event.target.value);
 });
 
 searchField.addEventListener('keydown', function(event) {
-
-  document.body.classList.add('no-logo');
 
   if (event.keyCode === 8 && event.target.value === '') {
     removeLastTag();
