@@ -229,7 +229,7 @@ function showReceptModel(id) {
             </div>
             <div class="clearfix"></div>
             ${alergie}
-            <a href="${data.recepturl}" target="_blank" class="btn btn-primary pull-right">Bestel direct</a>
+            <a href="${data.recepturl}" target="_blank" style="margin-left: 10px;" class="btn pull-right">Bestel direct</a>
             <a href="${data.recepturl}" target="_blank" class="btn btn-primary pull-right">Bekijk op AH.nl</a>
         `)
 
