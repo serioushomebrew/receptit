@@ -17,7 +17,7 @@
             <h2><i class="fa fa-filter"></i> Filters</h2>
 
             <section>
-                <h3>Vegatarisch</h3>
+                <h3>Dieet optie</h3>
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vegetarisch" class="filter" /> Vegetarisch</label><br />
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vlees" class="filter" /> Vlees</label><br />
                 <label><input type="checkbox" name="receptvleesvisofvega" value="vis" class="filter" /> Vis</label><br />
@@ -26,15 +26,15 @@
 
             <section>
                 <h3>Allergie</h3>
-                <label><input type="checkbox" name="receptallergeneninfo" value="lactosevrij" class="filter" /> lactosevrij</label><br />
-                <label><input type="checkbox" name="receptallergeneninfo" value="glutenvrij" class="filter" /> glutenvrij</label>
+                <label><input type="checkbox" name="receptallergeneninfo" value="lactosevrij" class="filter" /> Lactosevrij</label><br />
+                <label><input type="checkbox" name="receptallergeneninfo" value="glutenvrij" class="filter" /> Glutenvrij</label>
             </section>
 
             <section>
                 <h3>Prijzen</h3>
-                <label><input type="radio" name="" value="" class="filter" /> bonus</label><br />
-                <label><input type="radio" name="" value="" class="filter" /> laag naar hoog</label><br />
-                <label><input type="radio" name="" value="" class="filter" /> hoog naar laag</label>
+                <label><input type="radio" name="" value="" class="filter" /> Bonus</label><br />
+                <label><input type="radio" name="" value="" class="filter" /> Laag naar hoog</label><br />
+                <label><input type="radio" name="" value="" class="filter" /> Hoog naar laag</label>
             </section>
         </div>
         <div class="sidebar-toggle">
