@@ -23,7 +23,7 @@ var Client = {
     getClient : function(id){
 
         if( typeof id == 'undefined')
-            id = 13555;
+            id = 17981;
 
         $.get(this.getClientUrl(id), function(data){
 
@@ -43,7 +43,7 @@ var Client = {
     getShoppingList : function(clientId, cb){
 
         if( typeof clientId == 'undefined')
-            clientId = 13555;
+            clientId = 17981;
 
         var url = 'https://frahmework.ah.nl/ah/json/voedingswaardebon?klantid='+clientId+'&personalkey=rve67tITSGZb4vJo0CdPcRNlpnM1C14a';
 
