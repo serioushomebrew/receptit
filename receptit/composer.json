@@ -1,0 +1,57 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.1.*",
+        "ixudra/curl": "6.0.1",
+        "barryvdh/laravel-ide-helper": "^2.1"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1",
+        "laravel/homestead": "~2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "htdocs/database"
+        ],
+        "psr-4": {
+            "App\\": "htdocs/app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php htdocs/artisan clear-compiled",
+            "php htdocs/artisan optimize",
+            "php htdocs/artisan migrate --force"
+        ],
+        "pre-update-cmd": [
+            "php htdocs/artisan clear-compiled",
+            "php htdocs/artisan ide-helper:generate",
+            "php htdocs/artisan optimize"
+        ],
+        "post-update-cmd": [
+            "php htdocs/artisan optimize"
+        ],
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php htdocs/artisan key:generate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

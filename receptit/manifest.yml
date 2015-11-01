@@ -1,0 +1,8 @@
+---
+applications:
+- name: receptitlive
+  memory: 2048M
+  buildpack: https://github.com/cloudfoundry/php-buildpack#v3.2.2
+  env:
+    CF_STAGING_TIMEOUT: 15
+    CF_STARTUP_TIMEOUT: 15
