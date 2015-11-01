@@ -11,6 +11,9 @@ Homestead.json
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
+.DS_Store
+._*
+
 public/css/app.css.map
 public/css/app.css
 

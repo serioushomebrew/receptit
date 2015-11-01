@@ -1,13 +1,13 @@
-@keyframes fadeInUp { 
-    0% { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    } 
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    } 
-} 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 .results {
@@ -19,8 +19,8 @@
 
     &__badge {
         position: absolute;
-        top: -5px;
-        left: -5px;
+        top: -10px;
+        left: -10px;
         color: white;
         font-weight: bold;
         padding: 5px;
