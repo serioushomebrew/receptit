@@ -83,9 +83,8 @@ function getRecipes() {
               <span class="results__label">
                 <span>${item.name}</span>
               </span>
-              <span class="results__badge" style="background-color: ${color}">
-                ${badge}
-              </span>
+              ${item['product-recipe-total']}
+              ${item['product-recipe-current']}
 
             </div>
           `;
