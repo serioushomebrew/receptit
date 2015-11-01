@@ -58,13 +58,30 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Scan uw bonus kaart</h4>
+                        <h4 class="modal-title" id="scanModalLabel">Scan uw bonus kaart</h4>
                     </div>
                     <div class="modal-body">
                         <div id="container">
                             <div id="interactive" class="viewport"></div>
 
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Modal -->
+        <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="recipeModalLabel">Recept</h4>
+                    </div>
+                    <div class="modal-body" id="recipeModalBody">
+
                     </div>
                     <div class="modal-footer">
                     </div>

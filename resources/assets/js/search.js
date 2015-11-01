@@ -66,7 +66,7 @@ function getRecipes() {
           if (item['product-score'] === 1) {
             color = 'gold';
             badge = '<i class="fa fa-check"></i>'
-          } 
+          }
           if (item['product-score'] < 0.75) color = '#F27F1B';
           if (item['product-score'] < 0.25) color = '#A63126';
 
@@ -75,10 +75,10 @@ function getRecipes() {
           // const img = document.createElement('img');
           // img.src = item.image;
           resultsParent.innerHTML += `
-            <div class="results__item">
+            <div class="results__item" onclick="showReceptModel(${item.id});">
               <img class="results__image" src="${item.image}" />
               <span class="results__label">
-                <span>${item.name}</span>
+                <span class="title">${item.name}</span>
               </span>
               <span class="results__badge" style="background-color: ${color}">
                 ${badge}
@@ -86,6 +86,7 @@ function getRecipes() {
 
             </div>
           `;
+
           // resultsParent.appendChild(img);
         })
       }

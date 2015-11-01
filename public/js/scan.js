@@ -155,3 +155,48 @@ $(function() {
     });
 
 });
+
+function showReceptModel(id) {
+    $.post('/api/recipe', {
+        id: id
+    }, function(data) {
+        data = data[0];
+        $('#recipeModalLabel').html(data.recepttitel);
+
+        $('#recipeModalBody').html(
+            '<strong>receptid:</strong> ' + data.receptid + '<br/>' +
+            '<strong>recepttitel:</strong> ' + data.recepttitel + '<br/>' +
+            '<strong>receptgang:</strong> ' + data.receptgang + '<br/>' +
+            '<strong>receptmoment:</strong> ' + data.receptmoment + '<br/>' +
+            '<strong>receptkooktechniek:</strong> ' + data.receptkooktechniek + '<br/>' +
+            '<strong>receptseizoen:</strong> ' + data.receptseizoen + '<br/>' +
+            '<strong>receptgelegenheid:</strong> ' + data.receptgelegenheid + '<br/>' +
+            '<strong>receptsoort:</strong> ' + data.receptsoort + '<br/>' +
+            '<strong>receptkindertags:</strong> ' + data.receptkindertags + '<br/>' +
+            '<strong>receptvleesvisofvega:</strong> ' + data.receptvleesvisofvega + '<br/>' +
+            '<strong>receptallergeneninfo:</strong> ' + data.receptallergeneninfo + '<br/>' +
+            '<strong>receptkeuken:</strong> ' + data.receptkeuken + '<br/>' +
+            '<strong>receptpersonen:</strong> ' + data.receptpersonen + '<br/>' +
+            '<strong>receptserveertype:</strong> ' + data.receptserveertype + '<br/>' +
+            '<strong>receptbereidingswijze:</strong> ' + data.receptbereidingswijze + '<br/>' +
+            '<strong>receptbereidingstijd:</strong> ' + data.receptbereidingstijd + '<br/>' +
+            '<strong>receptbereidingsduurtekst:</strong> ' + data.receptbereidingsduurtekst + '<br/>' +
+            '<strong>receptingredienten:</strong> ' + data.receptingredienten + '<br/>' +
+            '<strong>receptzoektermen:</strong> ' + data.receptzoektermen + '<br/>' +
+            '<strong>receptkeukenspullen:</strong> ' + data.receptkeukenspullen + '<br/>' +
+            '<strong>receptenergie:</strong> ' + data.receptenergie + '<br/>' +
+            '<strong>receptkoolhydraten:</strong> ' + data.receptkoolhydraten + '<br/>' +
+            '<strong>recepteiwitten:</strong> ' + data.recepteiwitten + '<br/>' +
+            '<strong>receptvetten:</strong> ' + data.receptvetten + '<br/>' +
+            '<strong>receptvetverzadigd:</strong> ' + data.receptvetverzadigd + '<br/>' +
+            '<strong>receptnatrium:</strong> ' + data.receptnatrium + '<br/>' +
+            '<strong>receptvezels:</strong> ' + data.receptvezels + '<br/>' +
+            '<strong>receptbron:</strong> ' + data.receptbron + '<br/>' +
+            '<strong>receptafbeelding:</strong> ' + data.receptafbeelding + '<br/>' +
+            '<strong>recepturl:</strong> ' + data.recepturl + '<br/>' +
+            '<strong>recepttags:</strong> ' + data.recepttags
+        );
+
+        $('#recipeModal').modal('show');
+    });
+}
