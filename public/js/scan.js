@@ -159,9 +159,11 @@ $(function() {
 });
 
 function showReceptModel(id) {
+    document.body.classList.add('loading');
     $.post('/api/recipe', {
         id: id
     }, function(data) {
+        document.body.classList.remove('loading');
         data = data[0];
         $('#recipeModalLabel').html(data.recepttitel);
 

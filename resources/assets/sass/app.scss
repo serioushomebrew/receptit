@@ -16,3 +16,21 @@ body.no-logo {
     height: 60px;
   }
 }
+
+.loaderdisplay {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: rgba(0, 0, 0, .3);
+    color: #FFF;
+    text-align: center;
+    font-size: 42px;
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+body.loading {
+    .loaderdisplay {
+        opacity: 1;
+    }
+}

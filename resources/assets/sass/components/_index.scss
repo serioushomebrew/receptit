@@ -36,13 +36,14 @@ body {
   left: -256px;
   width: 256px;
   background-color: #564337;
+  overflow: auto;
 
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
-  -webkit-transition: left .5s;
-  -moz-transition: left .5s;
-  -o-transition: left .5s;
-  transition: left .5s;
+  -webkit-transition: left .5s ease;
+  -moz-transition: left .5s ease;
+  -o-transition: left .5s ease;
+  transition: left .5s ease;
 
   &.open {
     left: 0;
@@ -100,10 +101,10 @@ body {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 
-    -webkit-transition: left .5s;
-    -moz-transition: left .5s;
-    -o-transition: left .5s;
-    transition: left .5s;
+    -webkit-transition: left .5s ease;
+    -moz-transition: left .5s ease;
+    -o-transition: left .5s ease;
+    transition: left .5s ease;
 
     &.open {
       left: 256px;
