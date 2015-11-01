@@ -145,6 +145,18 @@ class AlbertHeijn
         return $recipes;
     }
 
+    public static function getRecipe($id)
+    {
+        return Curl::to(self::$_requestUrl['recipes'])
+            ->withData([
+                'personalkey' => self::$_apiKey,
+                'receptid' => $id,
+            ])
+            ->withOption('SSL_VERIFYPEER', env('API_SSL_ALBERTHEIJN', true))
+            ->asJson()
+            ->get();
+    }
+
     /**
      * Default request
      *

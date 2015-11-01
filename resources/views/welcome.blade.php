@@ -38,6 +38,14 @@
                 <div class="col-xs-9 col-xs-offset-1">
                     <img src="images/logo.png" class="img-responsive">
                 </div>
+    <video class="background-video" autoplay src="background.mp4"></video>
+    <script>
+        document.querySelector('.background-video').playbackRate = 0.8;
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9 col-xs-offset-1">
+                <img src="images/logo.png" class="img-responsive branding-logo">
             </div>
         </div>
 

@@ -1,33 +1,13 @@
-.animated { 
-    -webkit-animation-duration: 1s; 
-    animation-duration: 1s; 
-    -webkit-animation-fill-mode: both;
-    animation-duration: 1s;  
-    -webkit-animation-timing-function: ease-out; 
-    animation-timing-function: ease-out; 
-} 
-
-@-webkit-keyframes fadeInUp { 
-    0% { 
-        opacity: 0; 
-        -webkit-transform: translateY(20px); 
-    } 
-    100% { 
-        opacity: 1; 
-        -webkit-transform: translateY(0); 
-    } 
-} 
-
-@keyframes fadeInUp { 
-    0% { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    } 
-    100% { 
-        opacity: 1; 
-        transform: translateY(0); 
-    } 
-} 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 .results {
@@ -36,6 +16,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    &__badge {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        line-height: 26px;
+    }
 
     &__image {
         width: 200px;
@@ -78,7 +72,6 @@
         width: 200px;
         height: 200px;
         position: relative;
-        overflow: hidden;
 
         &:nth-child(1) {
             animation-delay: 0s;
