@@ -19,8 +19,6 @@ $(function() {
             var name = e.currentTarget.innerHTML;
             addTag(name);
             e.currentTarget.remove();
-
-
         },
 
         inputMapper: {
@@ -64,6 +62,10 @@ $(function() {
         },
         lastResult : null
     };
+
+    $('.barcode-pointer').click(function(){
+        $('#scanModal').modal('show')
+    });
 
     $('#scanModal').on('shown.bs.modal', function () {
         App.init();
