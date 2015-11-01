@@ -42,6 +42,7 @@ const requestCompletion = throttle(function (query) {
                             addTag(current);
                             searchAutocomplete.innerHTML = '';
                             searchField.value = '';
+                            searchField.focus();
                         });
                         li.textContent = current;
                         searchAutocomplete.appendChild(li);
