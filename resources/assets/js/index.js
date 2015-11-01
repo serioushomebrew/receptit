@@ -9,10 +9,10 @@ sidebarToggle.addEventListener("click", function () {
     if (!sidebar.classList.contains("open")) {
         sidebar.classList.add("open");
         sidebarToggle.classList.add("open");
-        sidebarToggle.innerHTML = '<';
+        sidebarToggle.innerHTML = '<i class="fa fa-angle-left"></i>';
     } else {
         sidebar.classList.remove("open");
         sidebarToggle.classList.remove("open");
-        sidebarToggle.innerHTML = '>';
+        sidebarToggle.innerHTML = '<i class="fa fa-angle-right"></i>';
     }
 });
