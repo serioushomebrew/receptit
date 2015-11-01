@@ -18,16 +18,16 @@
 
             <section>
                 <h3>Vegatarisch</h3>
-                <label><input type="radio" name="receptvleesvisofvega" value="vegetarisch" class="filter" /> Vegetarisch</label><br />
-                <label><input type="radio" name="receptvleesvisofvega" value="vlees" class="filter" /> Vlees</label><br />
-                <label><input type="radio" name="receptvleesvisofvega" value="vis" class="filter" /> Vis</label><br />
-                <label><input type="radio" name="receptvleesvisofvega" value="gevogelte" class="filter" /> Gevogelte</label>
+                <label><input type="checkbox" name="receptvleesvisofvega" value="vegetarisch" class="filter" /> Vegetarisch</label><br />
+                <label><input type="checkbox" name="receptvleesvisofvega" value="vlees" class="filter" /> Vlees</label><br />
+                <label><input type="checkbox" name="receptvleesvisofvega" value="vis" class="filter" /> Vis</label><br />
+                <label><input type="checkbox" name="receptvleesvisofvega" value="gevogelte" class="filter" /> Gevogelte</label>
             </section>
 
             <section>
                 <h3>Allergie</h3>
-                <label><input type="radio" name="receptallergeneninfo" value="lactosevrij" class="filter" /> lactosevrij</label><br />
-                <label><input type="radio" name="receptallergeneninfo" value="glutenvrij" class="filter" /> glutenvrij</label>
+                <label><input type="checkbox" name="receptallergeneninfo" value="lactosevrij" class="filter" /> lactosevrij</label><br />
+                <label><input type="checkbox" name="receptallergeneninfo" value="glutenvrij" class="filter" /> glutenvrij</label>
             </section>
 
             <section>
