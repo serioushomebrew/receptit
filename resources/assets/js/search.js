@@ -7,6 +7,7 @@ const searchField = search.querySelector('.search__field');
 const searchTags = search.querySelector('.search__tags');
 const searchAutocomplete = document.querySelector('.search__autocomplete');
 const searchSubmit = document.querySelector('.search__submit');
+const filters = document.querySelectorAll('.filter');
 const resultsParent = document.querySelector('.results');
 
 let searchItems = [];
@@ -48,22 +49,35 @@ const requestCompletion = throttle(function (query) {
 }, 250);
 
 function getRecipes() {
-  console.log('sdaf');
+  console.log('asdf');
+  var params = {
+        products: [
+          ...searchItems.map(item => item.value),
+          searchField.value === '' ? undefined : searchField.value
+        ]
+      },
+      receptvleesvisofvega = document.querySelector('input[name="receptvleesvisofvega"]:checked'),
+      receptallergeneninfo = document.querySelector('input[name="receptallergeneninfo"]:checked');
+
+  if(receptvleesvisofvega !== null) {
+    params['receptvleesvisofvega'] = receptvleesvisofvega.value;
+  }
+  if(receptallergeneninfo !== null) {
+    params['receptallergeneninfo'] = receptallergeneninfo.value;
+  }
+
   request
     .post('api/search/recipes')
-    .send({
-      products: [
-        ...searchItems.map(item => item.value),
-        searchField.value === '' ? undefined : searchField.value
-      ]
-    })
+    .send(params)
     .end((error, response) => {
       if (error === null) {
         resultsParent.innerHTML = '';
-        response.body.slice(0, 12).forEach(item => {
-          // const img = document.createElement('img');
-          // img.src = item.image;
-          resultsParent.innerHTML += `
+
+        if(response.body.length > 0) {
+          response.body.slice(0, 12).forEach(item => {
+            // const img = document.createElement('img');
+            // img.src = item.image;
+            resultsParent.innerHTML += `
             <div class="results__item">
               <img class="results__image" src="${item.image}" />
               <span class="results__label">
@@ -74,8 +88,15 @@ function getRecipes() {
 
             </div>
           `;
-          // resultsParent.appendChild(img);
-        })
+            // resultsParent.appendChild(img);
+          })
+        } else {
+          resultsParent.innerHTML += `
+            <div class="alert alert-info">
+              <strong>Helaas er is nog geen recept gevonden met deze ingredienten</strong><br /><a href="#">Klik hier</a> om een recept aan te maken
+            </div>
+          `;
+        }
       }
     });
 }
@@ -115,6 +136,10 @@ export function addTag(value) {
 
   getRecipes();
 }
+
+$(filters).change(function() {
+  getRecipes();
+});
 
 searchField.addEventListener('keyup', function(event) {
   requestCompletion(event.target.value);

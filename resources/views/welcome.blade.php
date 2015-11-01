@@ -11,13 +11,35 @@
 
     </head>
     <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-9 col-xs-offset-1">
-                <img src="images/logo.png" class="img-responsive branding-logo">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Filters</h2>
+
+            <section>
+                <h3>Vegatarisch</h3>
+                <label><input type="radio" name="receptvleesvisofvega" value="vegetarisch" class="filter" /> Vegetarisch</label><br />
+                <label><input type="radio" name="receptvleesvisofvega" value="vlees" class="filter" /> Vlees</label><br />
+                <label><input type="radio" name="receptvleesvisofvega" value="vis" class="filter" /> Vis</label><br />
+                <label><input type="radio" name="receptvleesvisofvega" value="gevogelte" class="filter" /> Gevogelte</label>
+            </section>
+
+            <section>
+                <h3>Allergie</h3>
+                <label><input type="radio" name="receptallergeneninfo" value="lactosevrij" class="filter" /> lactosevrij</label><br />
+                <label><input type="radio" name="receptallergeneninfo" value="glutenvrij" class="filter" /> glutenvrij</label>
+            </section>
+        </div>
+        <div class="sidebar-toggle">
+            >
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-9 col-xs-offset-1">
+                    <img src="images/logo.png" class="img-responsive">
+                </div>
             </div>
         </div>
-    </div>
 
         <div class="search__wrapper">
             <section class="search" role="search">
@@ -68,8 +90,8 @@
             </div>
         </div>
 
-        <script src="js/index.js"></script>
         <script src="js/jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <script src="js/index.js"></script>
         <script src="js/bootstrap/bootstrap.js" type="text/javascript"></script>
         <script src="js/quagga/quagga.js" type="text/javascript"></script>
         <script src="js/scan.js" type="text/javascript"></script>
