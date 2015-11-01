@@ -42,6 +42,7 @@ const requestCompletion = throttle(function (query) {
                             addTag(current);
                             searchAutocomplete.innerHTML = '';
                             searchField.value = '';
+                            searchField.focus();
                         });
                         li.textContent = current;
                         searchAutocomplete.appendChild(li);
@@ -120,6 +121,7 @@ function removeTagClick(key) {
     const tag = searchItems.find(item => item.key === key);
     searchItems = searchItems.filter(item => item !== tag);
     searchTags.removeChild(tag.tag);
+    getRecipes();
 
     if (event.target.value !== '' ||  searchItems.length > 0) {
         document.body.classList.add('no-logo');
@@ -132,6 +134,7 @@ function removeLastTag() {
     if (searchItems.length === 0) return;
     const tag = searchItems.pop();
     searchTags.removeChild(tag.tag);
+    getRecipes()
 }
 
 export function addTag(value) {

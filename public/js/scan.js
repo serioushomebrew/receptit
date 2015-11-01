@@ -202,6 +202,38 @@ function showReceptModel(id) {
             '<strong>recepttags:</strong> ' + data.recepttags
         );
 
+        var alergie = data.receptallergeneninfo !== '' ? `
+            <strong>Allergie-informatie</strong><br/>
+            ${data.receptallergeneninfo}
+        ` : ''
+
+
+        $('#recipeModalBody').html(`
+            <img src="${data.receptafbeelding}" style="float: left; margin-right: 10px; margin-bottom: 10px">
+            <strong>${data.receptbereidingsduurtekst}</strong>
+            <p>
+                ${data.receptbereidingswijze}
+            </p>
+            <div class="clearfix"></div>
+            <ul style="width: 50%; float: left">
+                <strong>Ingrediënten</strong>
+                ${data.receptzoektermen.split('|').map(item => `<li>${item}</li>`).join('')}
+            </ul>
+            <div style="width: 50%; float: left">
+                Energie: ${data.receptenergie}<br/>
+                Koolhydraten: ${data.receptkoolhydraten}<br/>
+                Eiwitten: ${data.recepteiwitten}<br/>
+                Vetten: ${data.receptvetten}<br/>
+                Verzadigd vet: ${data.receptvetverzadigd}<br/>
+                Natrium: ${data.receptnatrium}<br/>
+                Vezels: ${data.receptvezels}
+            </div>
+            <div class="clearfix"></div>
+            ${alergie}
+            <a href="${data.recepturl}" target="_blank" style="margin-left: 10px;" class="btn pull-right">Bestel direct</a>
+            <a href="${data.recepturl}" target="_blank" class="btn btn-primary pull-right">Bekijk op AH.nl</a>
+        `)
+
         $('#recipeModal').modal('show');
     });
 }
