@@ -112,7 +112,7 @@ $(function() {
 
             var added = [];
             var title = document.querySelector('#title');
-            Client.getShoppingList(10265,function(data){
+            Client.getShoppingList(17981,function(data){
 
 
                 if(typeof data[0] == 'undefined') {
@@ -125,7 +125,7 @@ $(function() {
                         if(added.indexOf(productId) != -1)
                             continue;
 
-                        if(typeof data[i].joule == 'undefined')
+                        if(typeof data[i].joule == 'undefined' && data[i].schapstickeromschrijving != 'ah broccoli')
                             continue;
 
                         added.push(productId);
@@ -136,6 +136,7 @@ $(function() {
                             div.classList.add('search__tag');
 
                             if(typeof data[0] != 'undefined'){
+
                                 if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
                                     div.innerHTML = data[0].recepttrefwoord;
                                     var container = document.querySelector('#shoppingList');
