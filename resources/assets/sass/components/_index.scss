@@ -95,6 +95,8 @@ body {
     text-align: center;
     cursor: pointer;
 
+    -webkit-backface-visibility: hidden;
+
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 
@@ -116,4 +118,6 @@ body {
     top: 0;
     left: 0;
     z-index: -1;
+    min-height: 100%;
+    object-fit: cover;
 }
