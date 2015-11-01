@@ -148,6 +148,7 @@ export function addTag(value) {
     removeTag.textContent = '×';
     removeTag.classList.add('search__tag__remove');
     removeTag.addEventListener('click', () => removeTagClick(key));
+    searchAutocomplete.innerHTML = '';
 
     tag.appendChild(removeTag);
     searchTags.appendChild(tag);
