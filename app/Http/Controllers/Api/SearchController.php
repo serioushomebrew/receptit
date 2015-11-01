@@ -119,4 +119,11 @@ class SearchController extends Controller
 
         return response()->json($recipes);
     }
+
+    public function postGetRecipe(Request $request)
+    {
+        AlbertHeijn::setApiKey(env('API_KEY_ALBERTHEIJN'));
+        $recipe = AlbertHeijn::getRecipe($request->input('id'));
+        return response()->json($recipe);
+    }
 }
