@@ -22,10 +22,13 @@ const requestCompletion = throttle(function (query) {
         currentRequest.abort();
     }
 
+    document.body.classList.add('loading');
+
     currentRequest = request
         .post('api/search/product-tags/')
         .send({ query })
         .end((error, response) => {
+            document.body.classList.remove('loading');
             currentRequest = null;
             if (error === null && response.body.products) {
                 searchAutocomplete.innerHTML = '';
@@ -65,10 +68,13 @@ function getRecipes() {
     params['receptallergeneninfo'] = receptallergeneninfo.value;
   }
 
+  document.body.classList.add('loading');
+
   request
     .post('api/search/recipes')
     .send(params)
         .end((error, response) => {
+            document.body.classList.remove('loading');
             if (error === null) {
                 resultsParent.innerHTML = '';
                 if (response.body.length > 0) {
@@ -114,6 +120,12 @@ function removeTagClick(key) {
     const tag = searchItems.find(item => item.key === key);
     searchItems = searchItems.filter(item => item !== tag);
     searchTags.removeChild(tag.tag);
+
+    if (event.target.value !== '' ||  searchItems.length > 0) {
+        document.body.classList.add('no-logo');
+    } else {
+        document.body.classList.remove('no-logo');
+    }
 }
 
 function removeLastTag() {
@@ -151,12 +163,16 @@ $('.filter').change(function() {
 });
 
 searchField.addEventListener('keyup', function(event) {
+    if (event.target.value !== '' ||  searchItems.length > 0) {
+        document.body.classList.add('no-logo');
+    } else {
+        document.body.classList.remove('no-logo');
+    }
+
     requestCompletion(event.target.value);
 });
 
 searchField.addEventListener('keydown', function(event) {
-
-    document.body.classList.add('no-logo');
 
     if (event.keyCode === 8 && event.target.value === '') {
         removeLastTag();
