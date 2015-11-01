@@ -52,6 +52,19 @@
         position: absolute;
         top: 0;
         left: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0.08) 51%,rgba(0,0,0,0.65) 100%);
+        position: relative;
+
+        span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
     }
 
     &__item {
@@ -65,6 +78,7 @@
         width: 200px;
         height: 200px;
         position: relative;
+        overflow: hidden;
 
         &:nth-child(1) {
             animation-delay: 0s;

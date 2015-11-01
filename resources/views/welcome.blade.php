@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-9 col-xs-offset-1">
-                <img src="images/logo.png" class="img-responsive">
+                <img src="images/logo.png" class="img-responsive branding-logo">
             </div>
         </div>
     </div>

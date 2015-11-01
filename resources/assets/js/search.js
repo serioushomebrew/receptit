@@ -67,10 +67,10 @@ function getRecipes() {
             <div class="results__item">
               <img class="results__image" src="${item.image}" />
               <span class="results__label">
-                ${item.name}
-                ${item['product-recipe-total']}
-                ${item['product-recipe-current']}
+                <span>${item.name}</span>
               </span>
+              ${item['product-recipe-total']}
+              ${item['product-recipe-current']}
 
             </div>
           `;
@@ -121,6 +121,8 @@ searchField.addEventListener('keyup', function(event) {
 });
 
 searchField.addEventListener('keydown', function(event) {
+
+  document.body.classList.add('no-logo');
 
   if (event.keyCode === 8 && event.target.value === '') {
     removeLastTag();
