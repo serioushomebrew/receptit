@@ -111,6 +111,9 @@ class SearchController extends Controller
         if ($request->json()->has('receptvleesvisofvega')) {
             $filters['receptvleesvisofvega'] = $request->json()->get('receptvleesvisofvega');
         }
+        if ($request->json()->has('receptallergeneninfo')) {
+            $filters['receptallergeneninfo'] = $request->json()->get('receptallergeneninfo');
+        }
 
         $recipes = AlbertHeijn::searchRecipes($products, $filters);
 
