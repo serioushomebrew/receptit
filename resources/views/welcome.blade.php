@@ -33,47 +33,43 @@
             >
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-9 col-xs-offset-1">
-                    <img src="images/logo.png" class="img-responsive">
-                </div>
     <video class="background-video" autoplay src="background.mp4"></video>
     <script>
         document.querySelector('.background-video').playbackRate = 0.8;
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-9 col-xs-offset-1">
-                <img src="images/logo.png" class="img-responsive branding-logo">
-            </div>
-        </div>
-
-        <div class="search__wrapper">
-            <section class="search" role="search">
-                <ol class="search__tags"></ol>
-                <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
-                <button class="search__submit">
-                    <i class="fa fa-search"></i>
-                </button>
-                <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
-                    <i class="fa fa-barcode"></i>
-                </button>
-                <div class="barcode-pointer">
-                    scan je bonus kaart
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-9 col-xs-offset-1">
+                    <img src="images/logo.png" class="img-responsive branding-logo">
                 </div>
-            </section>
-          <ul class="search__autocomplete">
+            </div>
 
-          </ul>
-        </div>
+            <div class="search__wrapper">
+                <section class="search" role="search">
+                    <ol class="search__tags"></ol>
+                    <input type="search" class="search__field" autofocus autosave autocomplete="no" placeholder="Wat heb ik in huis?" />
+                    <button class="search__submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <button class="btn btn-default btn-small" data-toggle="modal" data-target="#scanModal">
+                        <i class="fa fa-barcode"></i>
+                    </button>
+                    <div class="barcode-pointer">
+                        scan je bonus kaart
+                    </div>
+                </section>
+              <ul class="search__autocomplete">
+
+              </ul>
+            </div>
 
 
-        <div id="shoppingList" class="suggestions">
-        </div>
+            <div id="shoppingList" class="suggestions">
+            </div>
 
-        <div class="results">
+            <div class="results">
 
+            </div>
         </div>
 
 
