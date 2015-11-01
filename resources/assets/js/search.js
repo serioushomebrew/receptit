@@ -61,6 +61,17 @@ function getRecipes() {
       if (error === null) {
         resultsParent.innerHTML = '';
         response.body.slice(0, 12).forEach(item => {
+          let color = '#707317';
+          let badge = `${item['product-recipe-current']}/${item['product-recipe-total']}`;
+          if (item['product-score'] === 1) {
+            color = 'gold';
+            badge = '<i class="fa fa-check"></i>'
+          } 
+          if (item['product-score'] < 0.75) color = '#F27F1B';
+          if (item['product-score'] < 0.25) color = '#A63126';
+
+
+
           // const img = document.createElement('img');
           // img.src = item.image;
           resultsParent.innerHTML += `
@@ -69,8 +80,9 @@ function getRecipes() {
               <span class="results__label">
                 <span>${item.name}</span>
               </span>
-              ${item['product-recipe-total']}
-              ${item['product-recipe-current']}
+              <span class="results__badge" style="background-color: ${color}">
+                ${badge}
+              </span>
 
             </div>
           `;
