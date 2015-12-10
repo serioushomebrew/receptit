@@ -110,53 +110,64 @@ $(function() {
 
             console.log('bonus card found, gettings client list.');
 
-            var added = [];
-            var title = document.querySelector('#title');
-            Client.getShoppingList(17981,function(data){
-
-
-                if(typeof data[0] == 'undefined') {
-                    alert('Er zijn geen aankoppen gekoppeld aan uw Bonus kaart.');
-                } else {
-
-                    for(var i =0; i < data.length; i++){
-                        var productId = data[i].nasanr;
-
-                        if(added.indexOf(productId) != -1)
-                            continue;
-
-                        if(typeof data[i].joule == 'undefined' && data[i].schapstickeromschrijving != 'ah broccoli')
-                            continue;
-
-                        added.push(productId);
-                        Product.getByNasaNr(productId, function(data) {
-
-                            var div = document.createElement('div');
-                            div.classList.add('shop-item');
-                            div.classList.add('search__tag');
-
-                            if(typeof data[0] != 'undefined'){
-
-                                if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
-                                    div.innerHTML = data[0].recepttrefwoord;
-                                    var container = document.querySelector('#shoppingList');
-                                    div.addEventListener('click', App.shopAdd,false);
-
-                                    container.appendChild(div);
-                                }
-                            }
-                        });
-                    }
-
-                    $('#scanModal').modal('hide');
-                    $('.upcoming-alert').addClass('alert alert-success');
-                }
-
-            });
+            findCard();
 
         }
     });
 
+});
+
+function findCard(){
+    var added = [];
+    var title = document.querySelector('#title');
+    Client.getShoppingList(17981,function(data){
+
+
+        if(typeof data[0] == 'undefined') {
+            alert('Er zijn geen aankoppen gekoppeld aan uw Bonus kaart.');
+        } else {
+
+            for(var i =0; i < data.length; i++){
+                var productId = data[i].nasanr;
+
+                if(added.indexOf(productId) != -1)
+                    continue;
+
+                if(typeof data[i].joule == 'undefined' && data[i].schapstickeromschrijving != 'ah broccoli')
+                    continue;
+
+                added.push(productId);
+                Product.getByNasaNr(productId, function(data) {
+
+                    var div = document.createElement('div');
+                    div.classList.add('shop-item');
+                    div.classList.add('search__tag');
+
+                    if(typeof data[0] != 'undefined'){
+
+                        if(data[0].recepttrefwoord != "" && data[0].recepttrefwoord != 'xxx'){
+                            div.innerHTML = data[0].recepttrefwoord;
+                            var container = document.querySelector('#shoppingList');
+                            div.addEventListener('click', App.shopAdd,false);
+
+                            container.appendChild(div);
+                        }
+                    }
+                });
+            }
+
+            $('#scanModal').modal('hide');
+            $('.upcoming-alert').addClass('alert alert-success');
+        }
+
+    });
+}
+
+$(document).keyup(function(evt) {
+    if (evt.keyCode == 48) {
+        console.log('pressed');
+        findCard();
+    }
 });
 
 function showReceptModel(id) {
